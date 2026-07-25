@@ -1,0 +1,9 @@
+pandas
+numpy
+matplotlib
+requests
+openpyxl
+PySide6
+sqlalchemy
+scikit-learn
+ta
