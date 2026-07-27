@@ -3,9 +3,11 @@ from pathlib import Path
 from config import PROJECT_NAME, VERSION
 from database import DatabaseManager
 from market import MarketManager
+from portfolio import PortfolioManager
 
 
 def create_folders():
+
     folders = [
         "data",
         "logs",
@@ -18,6 +20,7 @@ def create_folders():
 
 
 def banner():
+
     print("=" * 60)
     print(PROJECT_NAME)
     print(VERSION)
@@ -37,6 +40,18 @@ def main():
     market.status()
     market.update()
 
+    portfolio = PortfolioManager()
+
+    # نمونه اولیه
+    portfolio.add_asset(
+        "وبملت",
+        1000,
+        1675
+    )
+
+    portfolio.list_assets()
+
+    print()
     print("Project initialized successfully.")
     print("Ready for development...")
 
