@@ -4,6 +4,7 @@ from config import PROJECT_NAME, VERSION
 from database import DatabaseManager
 from market import MarketManager
 from portfolio import PortfolioManager
+from scanner import Scanner
 
 
 def create_folders():
@@ -42,7 +43,6 @@ def main():
 
     portfolio = PortfolioManager()
 
-    # نمونه اولیه
     portfolio.add_asset(
         "وبملت",
         1000,
@@ -50,6 +50,9 @@ def main():
     )
 
     portfolio.list_assets()
+
+    scanner = Scanner()
+    scanner.scan()
 
     print()
     print("Project initialized successfully.")
