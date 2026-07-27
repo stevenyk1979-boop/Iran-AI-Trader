@@ -5,6 +5,7 @@ from database import DatabaseManager
 from market import MarketManager
 from portfolio import PortfolioManager
 from scanner import Scanner
+from technical_analysis import TechnicalAnalysis
 
 
 def create_folders():
@@ -42,18 +43,26 @@ def main():
     market.update()
 
     portfolio = PortfolioManager()
-
-    portfolio.add_asset(
-        "وبملت",
-        1000,
-        1675
-    )
-
     portfolio.list_assets()
 
     scanner = Scanner()
     scanner.scan()
 
+    ta = TechnicalAnalysis()
+
+    prices = ta.sample_data()
+
+    print()
+    print("=" * 40)
+    print("Technical Analysis")
+    print("=" * 40)
+
+    print("SMA(10)  :", ta.sma(prices, 10))
+    print("EMA(10)  :", ta.ema(prices, 10))
+    print("RSI(14)  :", ta.rsi(prices))
+    print("MACD     :", ta.macd(prices))
+    bands = ta.bollinger(prices)
+    print("Bollinger:", bands)
     print()
     print("Project initialized successfully.")
     print("Ready for development...")
