@@ -5,8 +5,12 @@ from database import DatabaseManager
 from market import MarketManager
 from portfolio import PortfolioManager
 from scanner import Scanner
+
 from technical_analysis import TechnicalAnalysis
 from score_engine import ScoreEngine
+
+from csv_loader import CSVLoader
+
 
 def create_folders():
 
@@ -48,9 +52,20 @@ def main():
     scanner = Scanner()
     scanner.scan()
 
-    ta = TechnicalAnalysis()
+    loader = CSVLoader()
 
-    prices = ta.sample_data()
+    history = loader.load("historical_data.csv")
+
+    print()
+    print("=" * 40)
+    print("Historical Data")
+    print("=" * 40)
+
+    print("Candles :", history.count())
+
+    prices = history.close_prices()
+
+    ta = TechnicalAnalysis()
 
     print()
     print("=" * 40)
@@ -61,16 +76,19 @@ def main():
     print("EMA(10)  :", ta.ema(prices, 10))
     print("RSI(14)  :", ta.rsi(prices))
     print("MACD     :", ta.macd(prices))
+
     bands = ta.bollinger(prices)
+
     print("Bollinger:", bands)
+
     engine = ScoreEngine()
 
     score = engine.total_score(
-    ta.rsi(prices),
-    ta.macd(prices),
-    bands,
-    prices[-1],
-)
+        ta.rsi(prices),
+        ta.macd(prices),
+        bands,
+        prices[-1],
+    )
 
     print()
     print("=" * 40)
@@ -79,6 +97,7 @@ def main():
 
     print("Score :", score)
     print("Signal:", engine.recommendation(score))
+
     print()
     print("Project initialized successfully.")
     print("Ready for development...")
