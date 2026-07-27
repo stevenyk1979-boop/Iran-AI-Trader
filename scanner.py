@@ -1,62 +1,91 @@
 """
-Iran AI Trader V2.0
+Iran AI Trader V2.0 Alpha
 Scanner Engine
 """
 
-from csv_loader import CSVLoader
-from technical_analysis import TechnicalAnalysis
-from score_engine import ScoreEngine
+from market_service import MarketService
+from ranking_service import RankingService
+from sample_market import SampleMarket
 
 
 class Scanner:
 
+    def __init__(self):
+
+        self.market = SampleMarket()
+
+        self.market_service = MarketService()
+
+        self.ranking_service = RankingService()
+
     def scan(self):
 
-        loader = CSVLoader()
+        print()
+        print("=" * 60)
+        print("Scanner Report")
+        print("=" * 60)
 
-        history = loader.load("historical_data.csv")
+        ranking = []
 
-        prices = history.close_prices()
+        symbols = self.market.symbols()
 
-        ta = TechnicalAnalysis()
+        for item in symbols:
 
-        engine = ScoreEngine()
+            symbol = item["symbol"]
 
-        rsi = ta.rsi(prices)
+            filename = item["file"]
 
-        macd = ta.macd(prices)
+            history = self.market_service.get_history(filename)
 
-        bands = ta.bollinger(prices)
+            prices = self.market_service.get_prices(filename)
 
-        score = engine.total_score(
-            rsi,
-            macd,
-            bands,
-            prices[-1]
+            result = self.ranking_service.analyze(prices)
+
+            ranking.append(
+                (
+                    symbol,
+                    result["score"],
+                    result["signal"],
+                    prices[-1],
+                    result["rsi"],
+                    result["macd"],
+                    result["bollinger"]
+                )
+            )
+
+        ranking.sort(
+            key=lambda x: x[1],
+            reverse=True
         )
 
         print()
 
-        print("=" * 50)
+        print(
+            f"{'Symbol':<12}"
+            f"{'Score':>8}"
+            f"{'Signal':>18}"
+        )
 
-        print("Scanner Report")
+        print("-" * 42)
 
-        print("=" * 50)
+        for row in ranking:
 
-        print("Symbol :", history.last().symbol)
-
-        print("Last Price :", prices[-1])
-
-        print()
-
-        print("RSI :", rsi)
-
-        print("MACD :", macd)
-
-        print("Bollinger :", bands)
+            print(
+                f"{row[0]:<12}"
+                f"{row[1]:>8}"
+                f"{row[2]:>18}"
+            )
 
         print()
 
-        print("Score :", score)
+        print("=" * 60)
+        print("Top Symbol Details")
+        print("=" * 60)
 
-        print("Signal :", engine.recommendation(score))
+        best = ranking[0]
+
+        print("Symbol     :", best[0])
+        print("Last Price :", best[3])
+        print("RSI        :", best[4])
+        print("MACD       :", best[5])
+        print("Bollinger  :", best[6])
