@@ -5,10 +5,10 @@ from database import DatabaseManager
 from market import MarketManager
 from portfolio import PortfolioManager
 from scanner import Scanner
-
+from risk_manager import RiskManager
 from technical_analysis import TechnicalAnalysis
 from score_engine import ScoreEngine
-
+from position_manager import PositionManager
 from csv_loader import CSVLoader
 
 
@@ -100,6 +100,39 @@ def main():
     print("Signal:", engine.recommendation(score))
 
     print()
+    print("=" * 60)
+    print("Risk Manager")
+    print("=" * 60)
+
+    risk = RiskManager()
+
+    capital = 10_000_000
+
+    entry = prices[-1]
+
+    print("Capital        :", capital)
+    print("Position Size  :", risk.position_size(capital))
+    print("Entry Price    :", entry)
+    print("Stop Loss      :", risk.stop_loss_price(entry))
+    print("Take Profit    :", risk.take_profit_price(entry))    
+    
+    print()
+    print("=" * 60)
+    print("Position Manager")
+    print("=" * 60)
+
+    pm = PositionManager()
+
+    pm.open_position(
+    "وبملت",
+    1000,
+    entry
+    )
+
+    print("Open Positions :", pm.count())
+
+    print(pm.list_positions())
+
     print("Project initialized successfully.")
     print("Ready for development...")
 

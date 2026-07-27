@@ -1,11 +1,10 @@
 """
 Iran AI Trader V2.0 Alpha
-Data Provider Layer
-
-این کلاس تنها مسئول دریافت داده از منبع داده است.
-در حال حاضر از CSV استفاده می‌کنیم.
-بعداً فقط همین فایل به TSETMC یا API واقعی متصل خواهد شد.
+Data Provider
 """
+
+from market_config import DATA_SOURCE
+from market_config import DEFAULT_HISTORY_FILE
 
 from csv_loader import CSVLoader
 
@@ -16,39 +15,33 @@ class DataProvider:
 
         self.loader = CSVLoader()
 
-    def load_history(self, filename="historical_data.csv"):
+    def load_history(self, filename=None):
 
-        """
-        بارگذاری اطلاعات تاریخی
-        """
+        if filename is None:
 
-        return self.loader.load(filename)
+            filename = DEFAULT_HISTORY_FILE
 
-    def get_prices(self, filename="historical_data.csv"):
+        if DATA_SOURCE == "CSV":
 
-        """
-        فقط قیمت‌های پایانی
-        """
+            return self.loader.load(filename)
+
+        raise NotImplementedError(
+            f"{DATA_SOURCE} provider not implemented."
+        )
+
+    def get_prices(self, filename=None):
 
         history = self.load_history(filename)
 
         return history.close_prices()
 
-    def get_last_record(self, filename="historical_data.csv"):
-
-        """
-        آخرین رکورد
-        """
+    def get_last_record(self, filename=None):
 
         history = self.load_history(filename)
 
         return history.last()
 
-    def get_symbol(self, filename="historical_data.csv"):
-
-        """
-        نام نماد
-        """
+    def get_symbol(self, filename=None):
 
         last = self.get_last_record(filename)
 
