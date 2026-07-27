@@ -82,7 +82,8 @@ def main():
     print("Bollinger:", bands)
 
     engine = ScoreEngine()
-
+    scanner = Scanner()
+    scanner.scan()
     score = engine.total_score(
         ta.rsi(prices),
         ta.macd(prices),

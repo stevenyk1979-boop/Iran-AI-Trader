@@ -1,29 +1,62 @@
 """
 Iran AI Trader V2.0
-Market Scanner
+Scanner Engine
 """
 
-from data_loader import DataLoader
+from csv_loader import CSVLoader
+from technical_analysis import TechnicalAnalysis
+from score_engine import ScoreEngine
 
 
 class Scanner:
 
-    def __init__(self):
-
-        self.loader = DataLoader()
-
     def scan(self):
 
-        symbols = self.loader.load_symbols()
+        loader = CSVLoader()
+
+        history = loader.load("historical_data.csv")
+
+        prices = history.close_prices()
+
+        ta = TechnicalAnalysis()
+
+        engine = ScoreEngine()
+
+        rsi = ta.rsi(prices)
+
+        macd = ta.macd(prices)
+
+        bands = ta.bollinger(prices)
+
+        score = engine.total_score(
+            rsi,
+            macd,
+            bands,
+            prices[-1]
+        )
 
         print()
-        print("=" * 40)
-        print("Market Scanner")
-        print("=" * 40)
 
-        for index, symbol in enumerate(symbols, start=1):
+        print("=" * 50)
 
-            print(f"{index}. {symbol}")
+        print("Scanner Report")
+
+        print("=" * 50)
+
+        print("Symbol :", history.last().symbol)
+
+        print("Last Price :", prices[-1])
 
         print()
-        print(f"{len(symbols)} symbols scanned.")
+
+        print("RSI :", rsi)
+
+        print("MACD :", macd)
+
+        print("Bollinger :", bands)
+
+        print()
+
+        print("Score :", score)
+
+        print("Signal :", engine.recommendation(score))
