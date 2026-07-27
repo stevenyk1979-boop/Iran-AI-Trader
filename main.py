@@ -6,7 +6,7 @@ from market import MarketManager
 from portfolio import PortfolioManager
 from scanner import Scanner
 from technical_analysis import TechnicalAnalysis
-
+from score_engine import ScoreEngine
 
 def create_folders():
 
@@ -63,6 +63,22 @@ def main():
     print("MACD     :", ta.macd(prices))
     bands = ta.bollinger(prices)
     print("Bollinger:", bands)
+    engine = ScoreEngine()
+
+    score = engine.total_score(
+    ta.rsi(prices),
+    ta.macd(prices),
+    bands,
+    prices[-1],
+)
+
+    print()
+    print("=" * 40)
+    print("Score Engine")
+    print("=" * 40)
+
+    print("Score :", score)
+    print("Signal:", engine.recommendation(score))
     print()
     print("Project initialized successfully.")
     print("Ready for development...")
