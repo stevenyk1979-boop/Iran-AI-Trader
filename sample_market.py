@@ -1,10 +1,9 @@
 """
 Iran AI Trader V2.0 Alpha
-Market Provider
+Sample Market
 """
 
 from market_config import USE_REAL_MARKET
-
 from tsetmc_connector import TSETMCConnector
 
 
@@ -30,7 +29,7 @@ class SampleMarket:
 
                     "symbol": name,
 
-                    "file": "historical_data.csv"
+                    "file": f"market_data/{name}.csv"
 
                 })
 
@@ -39,43 +38,28 @@ class SampleMarket:
         return [
 
             {
-
                 "symbol": "وبملت",
-
-                "file": "historical_data.csv"
-
+                "file": "market_data/webmelat.csv"
             },
 
             {
-
                 "symbol": "فملی",
-
-                "file": "historical_data.csv"
-
+                "file": "market_data/fmelli.csv"
             },
 
             {
-
                 "symbol": "فولاد",
-
-                "file": "historical_data.csv"
-
+                "file": "market_data/foolad.csv"
             },
 
             {
-
                 "symbol": "شستا",
-
-                "file": "historical_data.csv"
-
+                "file": "market_data/shasta.csv"
             },
 
             {
-
                 "symbol": "خودرو",
-
-                "file": "historical_data.csv"
-
+                "file": "market_data/khodro.csv"
             }
 
         ]

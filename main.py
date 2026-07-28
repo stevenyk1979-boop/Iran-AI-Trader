@@ -10,7 +10,7 @@ from technical_analysis import TechnicalAnalysis
 from score_engine import ScoreEngine
 from position_manager import PositionManager
 from csv_loader import CSVLoader
-
+from scanner_report import ScannerReport
 
 def create_folders():
 
@@ -50,7 +50,11 @@ def main():
     portfolio.list_assets()
 
     scanner = Scanner()
-    scanner.scan()
+    ranking = scanner.scan()
+
+    report = ScannerReport()
+
+    report.show(ranking)
 
     loader = CSVLoader()
 

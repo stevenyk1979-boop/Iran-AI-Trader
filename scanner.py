@@ -20,11 +20,6 @@ class Scanner:
 
     def scan(self):
 
-        print()
-        print("=" * 60)
-        print("Scanner Report")
-        print("=" * 60)
-
         ranking = []
 
         symbols = self.market.symbols()
@@ -35,57 +30,38 @@ class Scanner:
 
             filename = item["file"]
 
-            history = self.market_service.get_history(filename)
-
             prices = self.market_service.get_prices(filename)
+
+            if not prices:
+
+                continue
 
             result = self.ranking_service.analyze(prices)
 
-            ranking.append(
-                (
-                    symbol,
-                    result["score"],
-                    result["signal"],
-                    prices[-1],
-                    result["rsi"],
-                    result["macd"],
-                    result["bollinger"]
-                )
-            )
+            ranking.append({
+
+                "symbol": symbol,
+
+                "score": result["score"],
+
+                "signal": result["signal"],
+
+                "price": prices[-1],
+
+                "rsi": result["rsi"],
+
+                "macd": result["macd"],
+
+                "bollinger": result["bollinger"]
+
+            })
 
         ranking.sort(
-            key=lambda x: x[1],
+
+            key=lambda x: x["score"],
+
             reverse=True
+
         )
 
-        print()
-
-        print(
-            f"{'Symbol':<12}"
-            f"{'Score':>8}"
-            f"{'Signal':>18}"
-        )
-
-        print("-" * 42)
-
-        for row in ranking:
-
-            print(
-                f"{row[0]:<12}"
-                f"{row[1]:>8}"
-                f"{row[2]:>18}"
-            )
-
-        print()
-
-        print("=" * 60)
-        print("Top Symbol Details")
-        print("=" * 60)
-
-        best = ranking[0]
-
-        print("Symbol     :", best[0])
-        print("Last Price :", best[3])
-        print("RSI        :", best[4])
-        print("MACD       :", best[5])
-        print("Bollinger  :", best[6])
+        return ranking
