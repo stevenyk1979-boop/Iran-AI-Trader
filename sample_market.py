@@ -1,19 +1,38 @@
 """
-Iran AI Trader V2.0 Alpha
+Iran AI Trader Professional
 Sample Market
 """
 
 from market_config import USE_REAL_MARKET
+
 from tsetmc_connector import TSETMCConnector
+
+from symbol_manager import SymbolManager
+
 
 
 class SampleMarket:
+
 
     def __init__(self):
 
         self.connector = TSETMCConnector()
 
+        self.symbol_manager = SymbolManager()
+
+
+
     def symbols(self):
+
+        """
+        Return market symbols
+        """
+
+        if self.symbol_manager.count() > 0:
+
+            return self.symbol_manager.all()
+
+
 
         if USE_REAL_MARKET:
 
@@ -21,21 +40,13 @@ class SampleMarket:
 
             names = self.connector.get_symbols()
 
-            result = []
+            self.symbol_manager.load(names)
 
-            for name in names:
+            return self.symbol_manager.all()
 
-                result.append({
 
-                    "symbol": name,
 
-                    "file": f"market_data/{name}.csv"
-
-                })
-
-            return result
-
-        return [
+        sample_symbols = [
 
             {
                 "symbol": "وبملت",
@@ -63,3 +74,9 @@ class SampleMarket:
             }
 
         ]
+
+
+        self.symbol_manager.load(sample_symbols)
+
+
+        return self.symbol_manager.all()

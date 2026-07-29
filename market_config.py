@@ -1,13 +1,17 @@
 """
-Iran AI Trader V2.0 Alpha
+Iran AI Trader Professional
 Market Configuration
 """
 
+
+# -------------------------------
 # Data Source
+# -------------------------------
 
 DATA_SOURCE = "CSV"
 
-# گزینه‌های آینده
+
+# Future:
 
 # DATA_SOURCE = "TSETMC"
 
@@ -15,7 +19,26 @@ DATA_SOURCE = "CSV"
 
 # DATA_SOURCE = "DATABASE"
 
-# CSV File
+
+
+# -------------------------------
+# History
+# -------------------------------
 
 DEFAULT_HISTORY_FILE = "historical_data.csv"
+
+
+
+# -------------------------------
+# Market Mode
+# -------------------------------
+
 USE_REAL_MARKET = False
+
+
+
+# -------------------------------
+# Scanner Settings
+# -------------------------------
+
+MAX_SYMBOLS_SCAN = 1000

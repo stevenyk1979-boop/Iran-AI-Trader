@@ -27,18 +27,16 @@ class TSETMCConnector:
     def connect(self):
 
         """
-        Initialize TSETMC connection
+        Initialize connection
         """
 
         self.connected = True
-
 
         self.session.headers.update({
 
             "User-Agent": "Iran-AI-Trader"
 
         })
-
 
         return True
 
@@ -53,7 +51,7 @@ class TSETMCConnector:
     def request(self, endpoint):
 
         """
-        Generic API request
+        Generic TSETMC request
         """
 
         if not self.connected:
@@ -83,8 +81,7 @@ class TSETMCConnector:
     def adapt_symbols(self, raw_data):
 
         """
-        Convert raw TSETMC data
-        into project format
+        Convert raw symbols
         """
 
         return self.adapter.load_symbols(raw_data)
@@ -94,12 +91,35 @@ class TSETMCConnector:
     def get_symbols(self):
 
         """
-        Real symbol list will be connected
-        in next Sprint.
+        Temporary symbol loader
+
+        Real endpoint will replace this
         """
 
-        raise NotImplementedError(
+        raw_data = [
 
-            "TSETMC symbol endpoint is not connected yet."
+            {
+                "symbol": "وبملت",
+                "name": "بانک ملت",
+                "inscode": "123456",
+                "market": "بورس"
+            },
 
-        )
+            {
+                "symbol": "فملی",
+                "name": "ملی صنایع مس ایران",
+                "inscode": "654321",
+                "market": "بورس"
+            },
+
+            {
+                "symbol": "فولاد",
+                "name": "فولاد مبارکه",
+                "inscode": "789012",
+                "market": "بورس"
+            }
+
+        ]
+
+
+        return self.adapt_symbols(raw_data)
