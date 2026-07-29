@@ -1,5 +1,5 @@
 """
-Iran AI Trader V2.0 Alpha
+Iran AI Trader Professional
 Scanner Engine
 """
 
@@ -23,6 +23,12 @@ class Scanner:
         ranking = []
 
         symbols = self.market.symbols()
+
+        if not symbols:
+
+            print("Market is empty.")
+
+            return []
 
         for item in symbols:
 

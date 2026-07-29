@@ -1,17 +1,17 @@
 """
-Iran AI Trader V2.0
-Global Configuration
+Iran AI Trader Professional
+Core Configuration
 """
 
 from pathlib import Path
-
 
 # ---------------------------------------------------
 # Project Information
 # ---------------------------------------------------
 
-PROJECT_NAME = "Iran AI Trader"
-VERSION = "2.0 Alpha"
+PROJECT_NAME = "Iran AI Trader Professional"
+
+VERSION = "2.1 Beta"
 
 # ---------------------------------------------------
 # Project Paths
@@ -20,8 +20,11 @@ VERSION = "2.0 Alpha"
 BASE_DIR = Path(__file__).resolve().parent
 
 DATA_DIR = BASE_DIR / "data"
+
 LOG_DIR = BASE_DIR / "logs"
+
 DOC_DIR = BASE_DIR / "docs"
+
 TEST_DIR = BASE_DIR / "tests"
 
 # ---------------------------------------------------
@@ -33,21 +36,19 @@ DATABASE_NAME = "iran_ai_trader.db"
 DATABASE_PATH = DATA_DIR / DATABASE_NAME
 
 # ---------------------------------------------------
-# Market Settings
-# ---------------------------------------------------
-
-MARKET_NAME = "Iran Stock Market"
-
-DEFAULT_TIMEFRAME = "Daily"
-
-# ---------------------------------------------------
 # Create Required Folders
 # ---------------------------------------------------
 
-for folder in [
+for folder in (
+
     DATA_DIR,
+
     LOG_DIR,
+
     DOC_DIR,
+
     TEST_DIR,
-]:
+
+):
+
     folder.mkdir(exist_ok=True)
