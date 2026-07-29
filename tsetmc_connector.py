@@ -5,7 +5,8 @@ TSETMC Connector
 
 import requests
 
-from market_data_adapter import MarketDataAdapter
+from symbol_loader import SymbolLoader
+
 
 
 class TSETMCConnector:
@@ -20,7 +21,7 @@ class TSETMCConnector:
 
         self.session = requests.Session()
 
-        self.adapter = MarketDataAdapter()
+        self.symbol_loader = SymbolLoader()
 
 
 
@@ -32,11 +33,13 @@ class TSETMCConnector:
 
         self.connected = True
 
+
         self.session.headers.update({
 
             "User-Agent": "Iran-AI-Trader"
 
         })
+
 
         return True
 
@@ -78,22 +81,21 @@ class TSETMCConnector:
 
 
 
-    def adapt_symbols(self, raw_data):
+    def load_symbols(self, raw_data):
 
         """
-        Convert raw symbols
+        Process symbol data
         """
 
-        return self.adapter.load_symbols(raw_data)
+        return self.symbol_loader.load_from_tsetmc(raw_data)
 
 
 
     def get_symbols(self):
 
         """
-        Temporary symbol loader
-
-        Real endpoint will replace this
+        Temporary data.
+        Real endpoint will replace this.
         """
 
         raw_data = [
@@ -122,4 +124,4 @@ class TSETMCConnector:
         ]
 
 
-        return self.adapt_symbols(raw_data)
+        return self.load_symbols(raw_data)
