@@ -4,8 +4,9 @@ Historical Data Downloader
 """
 
 from pathlib import Path
-import csv
-import time
+
+from tsetmc_history import TSETMCHistory
+
 
 
 class HistoryDownloader:
@@ -18,6 +19,8 @@ class HistoryDownloader:
         self.data_dir.mkdir(
             exist_ok=True
         )
+
+        self.provider = TSETMCHistory()
 
 
 
@@ -44,7 +47,7 @@ class HistoryDownloader:
     def save(self, symbol, records):
 
         """
-        Save historical records
+        Save historical candles
         """
 
         path = self.file_path(symbol)
@@ -56,6 +59,9 @@ class HistoryDownloader:
             newline="",
             encoding="utf-8"
         ) as file:
+
+
+            import csv
 
 
             writer = csv.writer(file)
@@ -73,9 +79,7 @@ class HistoryDownloader:
             ])
 
 
-            for row in records:
-
-                writer.writerow(row)
+            writer.writerows(records)
 
 
 
@@ -86,10 +90,7 @@ class HistoryDownloader:
     def download(self, symbol):
 
         """
-        Temporary downloader.
-
-        Real TSETMC history endpoint
-        will replace this section.
+        Download and cache history
         """
 
 
@@ -99,45 +100,17 @@ class HistoryDownloader:
 
 
 
-        sample = []
+        records = self.provider.get_history(
 
-
-        price = 100
-
-
-        for i in range(30):
-
-            sample.append([
-
-                f"2026-07-{i+1}",
-
-                price,
-
-                price + 2,
-
-                price - 2,
-
-                price + 1,
-
-                1000000
-
-            ])
-
-
-            price += 1
-
-
-
-        path = self.save(
-
-            symbol,
-
-            sample
+            symbol
 
         )
 
 
-        time.sleep(0.1)
+        return self.save(
 
+            symbol,
 
-        return path
+            records
+
+        )
