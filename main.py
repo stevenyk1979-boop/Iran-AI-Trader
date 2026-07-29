@@ -1,10 +1,9 @@
 """
-Iran AI Trader V2.0 Beta
+Iran AI Trader V2.0 Alpha
 Main Application
 """
 
 from pathlib import Path
-from datetime import datetime
 
 from config import PROJECT_NAME, VERSION
 
@@ -12,24 +11,20 @@ from database import DatabaseManager
 from market import MarketManager
 
 from portfolio import PortfolioManager
+from risk_manager import RiskManager
 from position_manager import PositionManager
 
 from scanner import Scanner
 from scanner_report import ScannerReport
 
-from csv_loader import CSVLoader
-
 from technical_analysis import TechnicalAnalysis
 from score_engine import ScoreEngine
 
-from risk_manager import RiskManager
+from csv_loader import CSVLoader
 
-from download_manager import DownloadManager
+from tsetmc_connector import TSETMCConnector
 
 
-# ----------------------------------------------------------
-# Create folders
-# ----------------------------------------------------------
 
 def create_folders():
 
@@ -38,7 +33,7 @@ def create_folders():
         "data",
         "logs",
         "docs",
-        "tests"
+        "tests",
 
     ]
 
@@ -47,21 +42,18 @@ def create_folders():
         Path(folder).mkdir(exist_ok=True)
 
 
-# ----------------------------------------------------------
-# Banner
-# ----------------------------------------------------------
 
 def banner():
 
     print("=" * 60)
+
     print(PROJECT_NAME)
+
     print(VERSION)
+
     print("=" * 60)
 
 
-# ----------------------------------------------------------
-# Main
-# ----------------------------------------------------------
 
 def main():
 
@@ -69,17 +61,16 @@ def main():
 
     create_folders()
 
-    # -------------------------
+
     # Database
-    # -------------------------
 
     db = DatabaseManager()
 
     db.initialize()
 
-    # -------------------------
-    # Market
-    # -------------------------
+
+
+    # Market Status
 
     market = MarketManager()
 
@@ -87,35 +78,76 @@ def main():
 
     market.update()
 
-    # -------------------------
+
+
     # Portfolio
-    # -------------------------
 
     portfolio = PortfolioManager()
 
+    print()
+
+    print("Current Portfolio")
+
+    print("-" * 40)
+
     portfolio.list_assets()
 
-    # -------------------------
-    # Scanner
-    # -------------------------
+
+
+    # ==========================
+    # Market Universe Loading
+    # ==========================
+
+    connector = TSETMCConnector()
+
+    connector.connect()
+
+
+    symbols = connector.get_symbols()
+
 
     scanner = Scanner()
 
+
+    scanner.load_market(symbols)
+
+
+
+    # Scan Market
+
     ranking = scanner.scan()
+
+
 
     report = ScannerReport()
 
+    print()
+
+    print("=" * 60)
+
+    print("Scanner Report")
+
+    print("=" * 60)
+
+
     report.show(ranking)
 
-    # -------------------------
-    # Historical Data
-    # -------------------------
+
+
+    # ==========================
+    # Technical Analysis
+    # ==========================
+
 
     loader = CSVLoader()
 
-    history = loader.load("historical_data.csv")
 
-    prices = history.close_prices()
+    history = loader.load(
+
+        "historical_data.csv"
+
+    )
+
 
     print()
 
@@ -125,15 +157,22 @@ def main():
 
     print("=" * 40)
 
-    print("Candles :", history.count())
 
-    # -------------------------
-    # Technical Analysis
-    # -------------------------
+    print(
+
+        "Candles :",
+
+        history.count()
+
+    )
+
+
+    prices = history.close_prices()
+
+
 
     ta = TechnicalAnalysis()
 
-    bands = ta.bollinger(prices)
 
     print()
 
@@ -143,17 +182,60 @@ def main():
 
     print("=" * 40)
 
-    print("SMA(10)  :", ta.sma(prices, 10))
-    print("EMA(10)  :", ta.ema(prices, 10))
-    print("RSI(14)  :", ta.rsi(prices))
-    print("MACD     :", ta.macd(prices))
-    print("Bollinger:", bands)
 
-    # -------------------------
+    print(
+
+        "SMA(10) :",
+
+        ta.sma(prices,10)
+
+    )
+
+
+    print(
+
+        "EMA(10) :",
+
+        ta.ema(prices,10)
+
+    )
+
+
+    print(
+
+        "RSI(14) :",
+
+        ta.rsi(prices)
+
+    )
+
+
+    print(
+
+        "MACD :",
+
+        ta.macd(prices)
+
+    )
+
+
+    bands = ta.bollinger(prices)
+
+
+    print(
+
+        "Bollinger:",
+
+        bands
+
+    )
+
+
+
     # Score Engine
-    # -------------------------
 
     engine = ScoreEngine()
+
 
     score = engine.total_score(
 
@@ -167,6 +249,7 @@ def main():
 
     )
 
+
     print()
 
     print("=" * 40)
@@ -175,18 +258,20 @@ def main():
 
     print("=" * 40)
 
+
     print("Score :", score)
-    print("Signal:", engine.recommendation(score))
 
-    # -------------------------
+    print(
+
+        "Signal:",
+
+        engine.recommendation(score)
+
+    )
+
+
+
     # Risk Manager
-    # -------------------------
-
-    risk = RiskManager()
-
-    capital = 10_000_000
-
-    entry = prices[-1]
 
     print()
 
@@ -196,17 +281,74 @@ def main():
 
     print("=" * 60)
 
-    print("Capital        :", capital)
-    print("Position Size  :", risk.position_size(capital))
-    print("Entry Price    :", entry)
-    print("Stop Loss      :", risk.stop_loss_price(entry))
-    print("Take Profit    :", risk.take_profit_price(entry))
 
-    # -------------------------
+    risk = RiskManager()
+
+
+    capital = 10_000_000
+
+    entry = prices[-1]
+
+
+    print(
+
+        "Capital       :",
+
+        capital
+
+    )
+
+
+    print(
+
+        "Position Size :",
+
+        risk.position_size(capital)
+
+    )
+
+
+    print(
+
+        "Entry Price   :",
+
+        entry
+
+    )
+
+
+    print(
+
+        "Stop Loss     :",
+
+        risk.stop_loss_price(entry)
+
+    )
+
+
+    print(
+
+        "Take Profit   :",
+
+        risk.take_profit_price(entry)
+
+    )
+
+
+
     # Position Manager
-    # -------------------------
+
+    print()
+
+    print("=" * 60)
+
+    print("Position Manager")
+
+    print("=" * 60)
+
 
     pm = PositionManager()
+
 
     pm.open_position(
 
@@ -218,53 +360,39 @@ def main():
 
     )
 
-    print()
 
-    print("=" * 60)
+    print(
 
-    print("Position Manager")
+        "Open Positions :",
 
-    print("=" * 60)
+        pm.count()
 
-    print("Open Positions :", pm.count())
+    )
 
-    print(pm.list_positions())
 
-    # -------------------------
-    # Download Manager
-    # -------------------------
+    print(
 
-    downloader = DownloadManager()
+        pm.list_positions()
 
-    downloader.connect()
+    )
 
-    prices = downloader.download_history("وبملت")
-
-    cached = downloader.get_cached_history("وبملت")
 
     print()
 
-    print("=" * 60)
+    print(
 
-    print("Download Manager")
+        "Project initialized successfully."
 
-    print("=" * 60)
+    )
 
-    print("Downloaded Candles :", len(prices))
-    print("Cached Candles     :", len(cached))
+    print(
 
-    # -------------------------
-    # Finish
-    # -------------------------
+        "Ready for development..."
 
-    print()
-
-    print("Project initialized successfully.")
-
-    print("Ready for development...")
+    )
 
 
-# ----------------------------------------------------------
+
 
 if __name__ == "__main__":
 

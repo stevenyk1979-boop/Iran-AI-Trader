@@ -15,6 +15,7 @@ class TSETMCConnector:
     BASE_URL = "https://cdn.tsetmc.com/api"
 
 
+
     def __init__(self):
 
         self.connected = False
@@ -28,18 +29,16 @@ class TSETMCConnector:
     def connect(self):
 
         """
-        Initialize connection
+        Initialize TSETMC connection
         """
 
         self.connected = True
-
 
         self.session.headers.update({
 
             "User-Agent": "Iran-AI-Trader"
 
         })
-
 
         return True
 
@@ -84,18 +83,28 @@ class TSETMCConnector:
     def load_symbols(self, raw_data):
 
         """
-        Process symbol data
+        Load symbols into Market Universe
         """
 
-        return self.symbol_loader.load_from_tsetmc(raw_data)
+        return self.symbol_loader.load_universe(raw_data)
+
+
+
+    def get_market_universe(self):
+
+        """
+        Return current Market Universe
+        """
+
+        return self.symbol_loader.get_universe()
 
 
 
     def get_symbols(self):
 
         """
-        Temporary data.
-        Real endpoint will replace this.
+        Temporary symbols.
+        Real TSETMC endpoint will replace this.
         """
 
         raw_data = [
@@ -124,4 +133,7 @@ class TSETMCConnector:
         ]
 
 
-        return self.load_symbols(raw_data)
+        universe = self.load_symbols(raw_data)
+
+
+        return universe.symbols()

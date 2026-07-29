@@ -4,28 +4,91 @@ Market Universe
 """
 
 
+from symbol_manager import SymbolManager
+
+
+
 class MarketUniverse:
+
 
     def __init__(self):
 
-        self.symbols = []
+        self.symbol_manager = SymbolManager()
+
+        self.market = "Iran Stock Market"
+
+
 
     def load(self, symbols):
 
-        self.symbols = list(symbols)
+        """
+        Load market symbols
+        """
 
-    def all(self):
+        self.symbol_manager.load(symbols)
 
-        return self.symbols
+
+
+    def symbols(self):
+
+        """
+        Return all market symbols
+        """
+
+        return self.symbol_manager.all()
+
+
 
     def count(self):
 
-        return len(self.symbols)
+        """
+        Return symbol count
+        """
 
-    def clear(self):
+        return self.symbol_manager.count()
 
-        self.symbols.clear()
+
 
     def exists(self, symbol):
 
-        return symbol in self.symbols
+        """
+        Check symbol exists
+        """
+
+        return self.symbol_manager.exists(symbol)
+
+
+
+    def search(self, keyword):
+
+        """
+        Search symbols
+        """
+
+        return self.symbol_manager.find(keyword)
+
+
+
+    def clear(self):
+
+        """
+        Clear market universe
+        """
+
+        self.symbol_manager.symbols = []
+
+
+
+    def status(self):
+
+        """
+        Market status
+        """
+
+        return {
+
+            "market": self.market,
+
+            "symbols": self.count()
+
+        }
