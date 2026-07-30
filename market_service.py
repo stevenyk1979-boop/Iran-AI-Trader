@@ -13,22 +13,18 @@ class MarketService:
 
     def __init__(self):
 
-        if DATA_SOURCE.upper() == "TSETMC":
+        source = DATA_SOURCE.upper()
 
+        if source == "TSETMC":
             self.provider = TSETMCProvider()
-
         else:
-
             self.provider = CSVProvider()
 
     def symbols(self):
-
         return self.provider.get_symbols()
 
     def history(self, symbol):
-
         return self.provider.get_history(symbol)
 
     def available(self):
-
         return self.provider.is_available()

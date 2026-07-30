@@ -1,116 +1,53 @@
 """
 Iran AI Trader Professional
-Historical Data Downloader
+History Downloader
 """
 
-from pathlib import Path
-
+from market_cache import MarketCache
+from tsetmc_connector import TSETMCConnector
 from tsetmc_history import TSETMCHistory
-
 
 
 class HistoryDownloader:
 
-
     def __init__(self):
 
-        self.data_dir = Path("market_data")
+        self.cache = MarketCache()
 
-        self.data_dir.mkdir(
-            exist_ok=True
+        self.connector = TSETMCConnector()
+
+        self.history = TSETMCHistory(
+            self.connector
         )
-
-        self.provider = TSETMCHistory()
-
-
-
-    def file_path(self, symbol):
-
-        """
-        Return CSV path for symbol
-        """
-
-        return self.data_dir / f"{symbol}.csv"
-
-
-
-    def exists(self, symbol):
-
-        """
-        Check cached history
-        """
-
-        return self.file_path(symbol).exists()
-
-
-
-    def save(self, symbol, records):
-
-        """
-        Save historical candles
-        """
-
-        path = self.file_path(symbol)
-
-
-        with open(
-            path,
-            "w",
-            newline="",
-            encoding="utf-8"
-        ) as file:
-
-
-            import csv
-
-
-            writer = csv.writer(file)
-
-
-            writer.writerow([
-
-                "date",
-                "open",
-                "high",
-                "low",
-                "close",
-                "volume"
-
-            ])
-
-
-            writer.writerows(records)
-
-
-
-        return path
-
-
 
     def download(self, symbol):
 
-        """
-        Download and cache history
-        """
+        if self.cache.exists(symbol):
 
+            return self.cache.filename(symbol)
 
-        if self.exists(symbol):
+        csv_text = self.history.download_csv(symbol)
 
-            return self.file_path(symbol)
-
-
-
-        records = self.provider.get_history(
-
-            symbol
-
-        )
-
-
-        return self.save(
-
+        self.cache.save(
             symbol,
-
-            records
-
+            csv_text
         )
+
+        return self.cache.filename(symbol)
+
+    def update(self, symbol):
+
+        csv_text = self.history.download_csv(symbol)
+
+        self.cache.save(
+            symbol,
+            csv_text
+        )
+
+        return self.cache.filename(symbol)
+
+    def update_all(self, symbols):
+
+        for symbol in symbols:
+
+            self.update(symbol)
