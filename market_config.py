@@ -5,10 +5,12 @@ Market Configuration
 
 # Data source
 
-DATA_SOURCE = "CSV"
+DATA_SOURCE = "REAL"
 
-# Future:
-# DATA_SOURCE = "TSETMC"
+# Available:
+# CSV
+# TSETMC
+# REAL
 
 # Market folders
 
