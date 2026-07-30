@@ -16,6 +16,9 @@ class CSVLoader:
 
         history = HistoricalData()
 
+        symbol = filename.split("/")[-1].replace(".csv", "")
+        symbol = symbol.split("\\")[-1]
+
         with open(filename, newline="", encoding="utf-8") as file:
 
             reader = csv.DictReader(file)
@@ -24,9 +27,12 @@ class CSVLoader:
 
                 candle = MarketData(
 
-                    symbol=row["symbol"],
+                    symbol=symbol,
 
-                    date=datetime.now(),
+                    date=datetime.strptime(
+                        row["date"],
+                        "%Y-%m-%d"
+                    ),
 
                     open_price=float(row["open"]),
 
@@ -38,7 +44,7 @@ class CSVLoader:
 
                     volume=int(row["volume"]),
 
-                    value=float(row["value"])
+                    value=0.0
 
                 )
 
