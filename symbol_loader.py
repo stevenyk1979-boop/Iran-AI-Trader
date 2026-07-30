@@ -1,60 +1,46 @@
 """
 Iran AI Trader Professional
-CSV Provider
+Symbol Loader
 """
 
-import os
+from market_universe import MarketUniverse
+from tsetmc_symbol_parser import TSETMCSymbolParser
+from tsetmc_symbol_downloader import TSETMCSymbolDownloader
+from tsetmc_connector import TSETMCConnector
 
-from market_provider import MarketProvider
-from csv_loader import CSVLoader
 
-
-class CSVProvider(MarketProvider):
+class SymbolLoader:
 
     def __init__(self):
 
-        self.csv_loader = CSVLoader()
+        self.connector = TSETMCConnector()
+
+        self.downloader = TSETMCSymbolDownloader(
+            self.connector
+        )
+
+        self.parser = TSETMCSymbolParser()
+
+        self.universe = MarketUniverse()
+
+    def load(self):
+
+        raw_rows = self.downloader.download()
+
+        symbols = self.parser.parse(raw_rows)
+
+        self.universe.load(symbols)
+
+        return self.universe
 
     def get_symbols(self):
 
-        result = []
+        if self.universe.count() == 0:
 
-        folder = "market_data"
+            self.load()
 
-        if not os.path.exists(folder):
+        return self.universe.symbols()
 
-            return result
+    def count(self):
 
-        for filename in os.listdir(folder):
-
-            if not filename.endswith(".csv"):
-
-                continue
-
-            symbol = filename.replace(".csv", "")
-
-            result.append({
-
-                "symbol": symbol,
-
-                "file": os.path.join(folder, filename)
-
-            })
-
-        return result
-
-    def get_history(self, symbol):
-
-        filename = os.path.join(
-
-            "market_data",
-
-            f"{symbol}.csv"
-
-        )
-
-        return self.csv_loader.load(filename)
-
-    def is_available(self):
-
-        return True
+        return self.universe.count()

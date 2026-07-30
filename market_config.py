@@ -3,42 +3,23 @@ Iran AI Trader Professional
 Market Configuration
 """
 
-
-# -------------------------------
-# Data Source
-# -------------------------------
+# Data source
 
 DATA_SOURCE = "CSV"
 
-
 # Future:
-
 # DATA_SOURCE = "TSETMC"
 
-# DATA_SOURCE = "API"
+# Market folders
 
-# DATA_SOURCE = "DATABASE"
+MARKET_DATA_FOLDER = "market_data"
 
+CACHE_FOLDER = "market_data"
 
+# Download options
 
-# -------------------------------
-# History
-# -------------------------------
+DOWNLOAD_DAYS = 365
 
-DEFAULT_HISTORY_FILE = "historical_data.csv"
+MAX_THREADS = 8
 
-
-
-# -------------------------------
-# Market Mode
-# -------------------------------
-
-USE_REAL_MARKET = False
-
-
-
-# -------------------------------
-# Scanner Settings
-# -------------------------------
-
-MAX_SYMBOLS_SCAN = 1000
+REQUEST_TIMEOUT = 20
