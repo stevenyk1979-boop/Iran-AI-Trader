@@ -102,19 +102,9 @@ def main():
 
     connector.connect()
 
-
-    symbols = connector.get_symbols()
-
-
     scanner = Scanner()
 
-
-    scanner.load_market(symbols)
-
-
-
-    # Scan Market
-
+    ranking = scanner.scan()
     ranking = scanner.scan()
 
 

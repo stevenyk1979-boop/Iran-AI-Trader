@@ -3,101 +3,32 @@ Iran AI Trader Professional
 Market Service
 """
 
+from market_config import DATA_SOURCE
 
-from market_repository import MarketRepository
-from download_manager import DownloadManager
-
+from csv_provider import CSVProvider
+from tsetmc_provider import TSETMCProvider
 
 
 class MarketService:
 
-
     def __init__(self):
 
-        self.repository = MarketRepository()
+        if DATA_SOURCE.upper() == "TSETMC":
 
-        self.downloader = DownloadManager()
-
-        self.downloader.connect()
-
-
-
-    def get_history(self, filename="historical_data.csv"):
-
-        return self.repository.history(filename)
-
-
-
-    def get_prices(self, filename="historical_data.csv"):
-
-        """
-        Return prices.
-        If data file does not exist,
-        download history first.
-        """
-
-        try:
-
-            return self.repository.prices(filename)
-
-
-        except FileNotFoundError:
-
-
-            symbol = self.extract_symbol(filename)
-
-
-            if symbol:
-
-
-                self.downloader.download_history(symbol)
-
-
-                return self.repository.prices(filename)
-
-
-
-            return []
-
-
-
-    def extract_symbol(self, filename):
-
-        """
-        Extract symbol name from path
-
-        Example:
-        market_data/وبملت.csv
-        """
-
-        if "/" in filename:
-
-            name = filename.split("/")[-1]
-
-        elif "\\" in filename:
-
-            name = filename.split("\\")[-1]
+            self.provider = TSETMCProvider()
 
         else:
 
-            name = filename
+            self.provider = CSVProvider()
 
+    def symbols(self):
 
+        return self.provider.get_symbols()
 
-        if name.endswith(".csv"):
+    def history(self, symbol):
 
-            name = name[:-4]
+        return self.provider.get_history(symbol)
 
+    def available(self):
 
-        if name == "historical_data":
-
-            return None
-
-
-        return name
-
-
-
-    def get_last_symbol(self, filename="historical_data.csv"):
-
-        return self.repository.symbol(filename)
+        return self.provider.is_available()

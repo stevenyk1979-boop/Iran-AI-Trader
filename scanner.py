@@ -3,89 +3,49 @@ Iran AI Trader Professional
 Scanner Engine
 """
 
-
 from market_service import MarketService
 from ranking_service import RankingService
-from market_universe import MarketUniverse
-
 
 
 class Scanner:
 
-
     def __init__(self):
-
-        self.market = MarketUniverse()
 
         self.market_service = MarketService()
 
         self.ranking_service = RankingService()
 
-
-
-    def load_market(self, symbols):
-
-        """
-        Load market symbols into universe
-        """
-
-        self.market.load(symbols)
-
-
-
     def scan(self):
-
-        """
-        Scan all market symbols
-        """
 
         ranking = []
 
-
-        symbols = self.market.symbols()
-
+        symbols = self.market_service.symbols()
 
         for item in symbols:
 
-
             symbol = item["symbol"]
-
-            filename = item["file"]
-
 
             try:
 
-                prices = self.market_service.get_prices(filename)
-
-
-            except FileNotFoundError:
-
-                print(
-                    f"Skip {symbol} - data file not found"
-                )
-
-                continue
-
+                history = self.market_service.history(symbol)
 
             except Exception as error:
 
-                print(
-                    f"Skip {symbol} - {error}"
-                )
+                print(f"Skip {symbol} - {error}")
 
                 continue
 
-
-
-            if not prices:
+            if history is None:
 
                 continue
 
+            prices = history.close_prices()
 
+            if len(prices) < 20:
+
+                continue
 
             result = self.ranking_service.analyze(prices)
-
-
 
             ranking.append({
 
@@ -105,8 +65,6 @@ class Scanner:
 
             })
 
-
-
         ranking.sort(
 
             key=lambda x: x["score"],
@@ -114,6 +72,5 @@ class Scanner:
             reverse=True
 
         )
-
 
         return ranking
