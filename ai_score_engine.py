@@ -3,8 +3,16 @@ Iran AI Trader Professional
 AI Score Engine
 """
 
+from trend_strength import TrendStrength
+from momentum_engine import MomentumEngine
+
 
 class AIScoreEngine:
+
+    def __init__(self):
+
+        self.trend = TrendStrength()
+        self.momentum = MomentumEngine()
 
     def score(self, analysis):
 
@@ -12,77 +20,91 @@ class AIScoreEngine:
 
         detail = {}
 
-        daily = analysis["daily"]
-
-
+        # ---------------------------------
         # Trend
+        # ---------------------------------
 
-        trend = 0
+        trend = self.trend.score(analysis)
 
-        if daily["ema"] > daily["sma"]:
-
-            trend = 20
+        score += trend["score"]
 
         detail["trend"] = trend
 
-        score += trend
-
-
+        # ---------------------------------
         # Momentum
+        # ---------------------------------
 
-        momentum = 0
+        momentum = self.momentum.score(analysis)
 
-        if daily["rsi"] is not None:
-
-            if 45 <= daily["rsi"] <= 70:
-
-                momentum = 20
+        score += momentum["score"]
 
         detail["momentum"] = momentum
 
-        score += momentum
-
-
+        # ---------------------------------
         # MACD
+        # ---------------------------------
 
         macd_score = 0
 
-        if daily["macd"] is not None:
+        daily = analysis["daily"]
+
+        macd = daily.get("macd")
+
+        if macd is not None:
 
             macd_score = 20
 
-        detail["macd"] = macd_score
-
         score += macd_score
 
+        detail["macd"] = {
 
+            "score": macd_score,
+
+            "value": macd
+
+        }
+
+        # ---------------------------------
         # Bollinger
+        # ---------------------------------
 
-        bollinger_score = 0
+        boll_score = 0
 
-        if daily["bollinger"] is not None:
+        bands = daily.get("bollinger")
 
-            bollinger_score = 20
+        if bands is not None:
 
-        detail["bollinger"] = bollinger_score
+            boll_score = 20
 
-        score += bollinger_score
+        score += boll_score
 
+        detail["bollinger"] = {
 
+            "score": boll_score,
+
+            "value": bands
+
+        }
+
+        # ---------------------------------
         # Risk
+        # ---------------------------------
 
-        risk = 20
+        risk_score = 20
 
-        detail["risk"] = risk
+        score += risk_score
 
-        score += risk
+        detail["risk"] = risk_score
 
+        # ---------------------------------
+        # Final Decision
+        # ---------------------------------
 
-        if score >= 85:
+        if score >= 90:
 
             signal = "STRONG BUY"
 
-        elif score >= 70:
+        elif score >= 75:
 
             signal = "BUY"
 
@@ -93,7 +115,6 @@ class AIScoreEngine:
         else:
 
             signal = "SELL"
-
 
         return {
 

@@ -15,6 +15,8 @@ class TSETMCProvider(MarketProvider):
 
         self.connector = TSETMCConnector()
 
+        self.connector.connect()
+
         self.history = TSETMCHistory(self.connector)
 
     def get_symbols(self):
