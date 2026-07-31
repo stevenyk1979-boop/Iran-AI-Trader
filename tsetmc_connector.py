@@ -8,19 +8,27 @@ import requests
 
 class TSETMCConnector:
 
-    BASE_URL = ""
-
     def __init__(self):
 
         self.timeout = 20
 
+        self.session = requests.Session()
+
+        self.headers = {
+
+            "User-Agent": "Iran-AI-Trader/2.1"
+
+        }
+
     def get(self, url):
 
-        response = requests.get(
+        response = self.session.get(
 
             url,
 
-            timeout=self.timeout
+            timeout=self.timeout,
+
+            headers=self.headers
 
         )
 
@@ -31,22 +39,29 @@ class TSETMCConnector:
     def download_symbols(self):
 
         """
-        TODO
+        Download market symbols.
 
-        اتصال واقعی TSETMC
-
-        فعلاً None برمی‌گرداند.
+        TODO:
+        Replace with real TSETMC endpoint.
         """
 
-        return None
+        return []
 
     def download_history(self, symbol):
 
         """
-        TODO
+        Download historical candles.
 
-        اتصال واقعی تاریخچه
-
+        TODO:
+        Replace with real TSETMC endpoint.
         """
 
-        return None
+        return []
+
+    def is_available(self):
+
+        """
+        Provider status
+        """
+
+        return True
