@@ -39,13 +39,19 @@ class Scanner:
 
                 continue
 
-            prices = history.close_prices()
+            try:
+
+                prices = history.close_prices()
+
+            except Exception:
+
+                continue
 
             if len(prices) < 20:
 
                 continue
 
-            result = self.ranking_service.analyze(prices)
+            result = self.ranking_service.analyze(history)
 
             ranking.append({
 
@@ -61,7 +67,9 @@ class Scanner:
 
                 "macd": result["macd"],
 
-                "bollinger": result["bollinger"]
+                "bollinger": result["bollinger"],
+
+                "detail": result["detail"]
 
             })
 

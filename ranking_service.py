@@ -1,10 +1,11 @@
 """
-Iran AI Trader V2.0
+Iran AI Trader Professional
 Ranking Service
 """
 
 from technical_analysis import TechnicalAnalysis
-from score_engine import ScoreEngine
+from multi_timeframe import MultiTimeFrameAnalyzer
+from ai_score_engine import AIScoreEngine
 
 
 class RankingService:
@@ -12,35 +13,36 @@ class RankingService:
     def __init__(self):
 
         self.ta = TechnicalAnalysis()
-        self.engine = ScoreEngine()
 
-    def analyze(self, prices):
+        self.mtf = MultiTimeFrameAnalyzer(self.ta)
 
-        rsi = self.ta.rsi(prices)
+        self.ai = AIScoreEngine()
 
-        macd = self.ta.macd(prices)
+    def analyze(self, history):
 
-        bands = self.ta.bollinger(prices)
+        """
+        Analyze one symbol history
+        """
 
-        score = self.engine.total_score(
-            rsi,
-            macd,
-            bands,
-            prices[-1]
-        )
+        analysis = self.mtf.analyze_all(history)
 
-        signal = self.engine.recommendation(score)
+        result = self.ai.score(analysis)
 
         return {
 
-            "rsi": rsi,
+            "analysis": analysis,
 
-            "macd": macd,
+            "detail": result["detail"],
 
-            "bollinger": bands,
+            "score": result["score"],
 
-            "score": score,
+            "signal": result["signal"],
 
-            "signal": signal
+            # برای سازگاری با نسخه فعلی Scanner
+            "rsi": analysis["daily"]["rsi"],
+
+            "macd": analysis["daily"]["macd"],
+
+            "bollinger": analysis["daily"]["bollinger"]
 
         }
