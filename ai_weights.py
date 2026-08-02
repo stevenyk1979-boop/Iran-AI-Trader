@@ -1,0 +1,11 @@
+"""
+Iran AI Trader Professional
+AI Weights
+"""
+
+TREND_WEIGHT = 0.25
+MOMENTUM_WEIGHT = 0.20
+VOLUME_WEIGHT = 0.20
+MACD_WEIGHT = 0.15
+RSI_WEIGHT = 0.10
+RISK_WEIGHT = 0.10

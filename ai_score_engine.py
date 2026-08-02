@@ -5,6 +5,9 @@ AI Score Engine
 
 from trend_strength import TrendStrength
 from momentum_engine import MomentumEngine
+from volume_engine import VolumeEngine
+from risk_engine import RiskEngine
+from decision_engine import DecisionEngine
 
 
 class AIScoreEngine:
@@ -12,116 +15,98 @@ class AIScoreEngine:
     def __init__(self):
 
         self.trend = TrendStrength()
+
         self.momentum = MomentumEngine()
 
-    def score(self, analysis):
+        self.volume = VolumeEngine()
 
-        score = 0
+        self.risk = RiskEngine()
 
-        detail = {}
+        self.decision = DecisionEngine()
+
+
+    # ---------------------------------
+
+    def score(
+
+        self,
+
+        history,
+
+        analysis,
+
+        symbol=None
+
+    ):
+
+        """
+        Run AI scoring pipeline
+        """
+
+
+        engines = {}
+
 
         # ---------------------------------
         # Trend
         # ---------------------------------
 
-        trend = self.trend.score(analysis)
+        engines["trend"] = self.trend.score(
 
-        score += trend["score"]
+            analysis
 
-        detail["trend"] = trend
+        )
+
 
         # ---------------------------------
         # Momentum
         # ---------------------------------
 
-        momentum = self.momentum.score(analysis)
+        engines["momentum"] = self.momentum.score(
 
-        score += momentum["score"]
+            analysis
 
-        detail["momentum"] = momentum
+        )
 
-        # ---------------------------------
-        # MACD
-        # ---------------------------------
-
-        macd_score = 0
-
-        daily = analysis["daily"]
-
-        macd = daily.get("macd")
-
-        if macd is not None:
-
-            macd_score = 20
-
-        score += macd_score
-
-        detail["macd"] = {
-
-            "score": macd_score,
-
-            "value": macd
-
-        }
 
         # ---------------------------------
-        # Bollinger
+        # Volume
         # ---------------------------------
 
-        boll_score = 0
+        volumes = history.volumes()
 
-        bands = daily.get("bollinger")
 
-        if bands is not None:
+        engines["volume"] = self.volume.score(
 
-            boll_score = 20
+            volumes
 
-        score += boll_score
+        )
 
-        detail["bollinger"] = {
-
-            "score": boll_score,
-
-            "value": bands
-
-        }
 
         # ---------------------------------
         # Risk
         # ---------------------------------
 
-        risk_score = 20
+        risk_result = self.risk.calculate(
 
-        score += risk_score
+            history
 
-        detail["risk"] = risk_score
+        )
+
 
         # ---------------------------------
         # Final Decision
         # ---------------------------------
 
-        if score >= 90:
+        result = self.decision.decide(
 
-            signal = "STRONG BUY"
+            symbol,
 
-        elif score >= 75:
+            engines,
 
-            signal = "BUY"
+            risk_result
 
-        elif score >= 50:
+        )
 
-            signal = "HOLD"
 
-        else:
-
-            signal = "SELL"
-
-        return {
-
-            "score": score,
-
-            "signal": signal,
-
-            "detail": detail
-
-        }
+        return result

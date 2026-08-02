@@ -14,35 +14,97 @@ class RankingService:
 
         self.ta = TechnicalAnalysis()
 
-        self.mtf = MultiTimeFrameAnalyzer(self.ta)
+        self.mtf = MultiTimeFrameAnalyzer(
+
+            self.ta
+
+        )
 
         self.ai = AIScoreEngine()
 
-    def analyze(self, history):
+
+    # ---------------------------------
+
+    def analyze(
+
+        self,
+
+        history,
+
+        symbol=None
+
+    ):
 
         """
         Analyze one symbol history
         """
 
-        analysis = self.mtf.analyze_all(history)
 
-        result = self.ai.score(analysis)
+        analysis = self.mtf.analyze_all(
+
+            history
+
+        )
+
+
+        result = self.ai.score(
+
+            history,
+
+            analysis,
+
+            symbol
+
+        )
+
 
         return {
 
+            "symbol": symbol,
+
             "analysis": analysis,
 
-            "detail": result["detail"],
 
-            "score": result["score"],
+            # Decision Result
 
-            "signal": result["signal"],
+            "detail": result.detail,
 
-            # برای سازگاری با نسخه فعلی Scanner
-            "rsi": analysis["daily"]["rsi"],
+            "score": round(
 
-            "macd": analysis["daily"]["macd"],
+                result.score,
 
-            "bollinger": analysis["daily"]["bollinger"]
+                2
+
+            ),
+
+            "signal": result.signal,
+
+
+            # New AI Information
+
+            "confidence": result.confidence,
+
+            "risk": result.risk,
+
+
+            # Compatibility with Scanner
+
+            "rsi": analysis["daily"].get(
+
+                "rsi"
+
+            ),
+
+            "macd": analysis["daily"].get(
+
+                "macd"
+
+            ),
+
+            "bollinger": analysis["daily"].get(
+
+                "bollinger"
+
+            )
 
         }

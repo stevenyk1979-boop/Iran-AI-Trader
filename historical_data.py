@@ -4,7 +4,6 @@ Historical Data Engine
 """
 
 from datetime import datetime
-
 from market_data import MarketData
 
 
@@ -14,13 +13,19 @@ class HistoricalData:
 
         self.candles = []
 
+    # ---------------------------------
+
     def add(self, candle: MarketData):
 
         self.candles.append(candle)
 
+    # ---------------------------------
+
     def count(self):
 
         return len(self.candles)
+
+    # ---------------------------------
 
     def close_prices(self):
 
@@ -29,12 +34,34 @@ class HistoricalData:
             for candle in self.candles
         ]
 
+    # ---------------------------------
+
+    def volumes(self):
+
+        return [
+            candle.volume
+            for candle in self.candles
+        ]
+
+    # ---------------------------------
+
+    def values(self):
+
+        return [
+            candle.value
+            for candle in self.candles
+        ]
+
+    # ---------------------------------
+
     def last(self):
 
         if not self.candles:
             return None
 
         return self.candles[-1]
+
+    # ---------------------------------
 
     def load_sample_data(self):
 
