@@ -3,70 +3,44 @@ Iran AI Trader Professional
 Symbol Loader
 """
 
-from market_data_adapter import MarketDataAdapter
 from market_universe import MarketUniverse
+from tsetmc_symbol_parser import TSETMCSymbolParser
+from tsetmc_symbol_downloader import TSETMCSymbolDownloader
+from tsetmc_connector import TSETMCConnector
 
 
 class SymbolLoader:
 
-
     def __init__(self):
 
-        self.adapter = MarketDataAdapter()
+        self.connector = TSETMCConnector()
+
+        self.downloader = TSETMCSymbolDownloader(
+            self.connector
+        )
+
+        self.parser = TSETMCSymbolParser()
 
         self.universe = MarketUniverse()
 
+    def load(self):
 
+        raw_rows = self.downloader.download()
 
-    def load_from_tsetmc(self, raw_data):
-
-        """
-        Convert TSETMC raw data
-        into project symbol format
-        """
-
-        return self.adapter.load_symbols(raw_data)
-
-
-
-    def load_universe(self, raw_data):
-
-        """
-        Load symbols into Market Universe
-        """
-
-        symbols = self.load_from_tsetmc(raw_data)
+        symbols = self.parser.parse(raw_rows)
 
         self.universe.load(symbols)
 
         return self.universe
 
-
-
-    def get_universe(self):
-
-        """
-        Return current market universe
-        """
-
-        return self.universe
-
-
-
     def get_symbols(self):
 
-        """
-        Return current symbols
-        """
+        if self.universe.count() == 0:
+
+            self.load()
 
         return self.universe.symbols()
 
-
-
     def count(self):
-
-        """
-        Return symbol count
-        """
 
         return self.universe.count()

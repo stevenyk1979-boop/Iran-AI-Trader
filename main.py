@@ -22,7 +22,7 @@ from score_engine import ScoreEngine
 
 from csv_loader import CSVLoader
 
-from tsetmc_connector import TSETMCConnector
+
 
 
 
@@ -98,29 +98,20 @@ def main():
     # Market Universe Loading
     # ==========================
 
-    connector = TSETMCConnector()
+    # ==========================
+# Market Scan
+# ==========================
 
-    connector.connect()
-
-
-    symbols = connector.get_symbols()
-
+    # ==========================
+    # Market Scan
+    # ==========================
 
     scanner = Scanner()
-
-
-    scanner.load_market(symbols)
-
-
-
-    # Scan Market
 
     ranking = scanner.scan()
 
 
-
     report = ScannerReport()
-
     print()
 
     print("=" * 60)

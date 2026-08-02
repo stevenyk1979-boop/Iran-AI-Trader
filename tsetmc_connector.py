@@ -3,145 +3,65 @@ Iran AI Trader Professional
 TSETMC Connector
 """
 
-
 import requests
-
 
 
 class TSETMCConnector:
 
-
     def __init__(self):
 
-        self.connected = False
+        self.timeout = 20
 
-        self.base_url = "https://www.tsetmc.com"
+        self.session = requests.Session()
 
+        self.headers = {
 
-
-    def connect(self):
-
-        """
-        Initialize connection
-        """
-
-        self.connected = True
-
-        return True
-
-
-
-    def status(self):
-
-        return self.connected
-
-
-
-    def get_symbols(self):
-
-        """
-        Return market symbols.
-
-        Compatible with:
-        SymbolLoader
-        MarketUniverse
-        Scanner
-        """
-
-
-        if not self.connected:
-
-            self.connect()
-
-
-
-        symbols = [
-
-            "وبملت",
-
-            "فملی",
-
-            "فولاد",
-
-            "شستا",
-
-            "خودرو"
-
-        ]
-
-
-
-        result = []
-
-
-
-        for symbol in symbols:
-
-
-            result.append({
-
-                "symbol": symbol,
-
-                "file": f"market_data/{symbol}.csv"
-
-            })
-
-
-
-        return result
-
-
-
-    def get_symbol_info(self, symbol):
-
-        """
-        Symbol information
-        """
-
-
-        return {
-
-            "symbol": symbol,
-
-            "market": "TSE",
-
-            "status": "active"
+            "User-Agent": "Iran-AI-Trader/2.1"
 
         }
 
+    def get(self, url):
 
+        response = self.session.get(
 
-    def request(self, endpoint):
+            url,
+
+            timeout=self.timeout,
+
+            headers=self.headers
+
+        )
+
+        response.raise_for_status()
+
+        return response.text
+
+    def download_symbols(self):
 
         """
-        Generic HTTP request handler.
+        Download market symbols.
 
-        Used later for real TSETMC API.
+        TODO:
+        Replace with real TSETMC endpoint.
         """
 
+        return []
 
-        if not self.connected:
+    def download_history(self, symbol):
 
-            self.connect()
+        """
+        Download historical candles.
 
+        TODO:
+        Replace with real TSETMC endpoint.
+        """
 
+        return []
 
-        try:
+    def is_available(self):
 
-            response = requests.get(
+        """
+        Provider status
+        """
 
-                self.base_url + endpoint,
-
-                timeout=10
-
-            )
-
-
-            return response.text
-
-
-
-        except Exception:
-
-
-            return None
+        return True

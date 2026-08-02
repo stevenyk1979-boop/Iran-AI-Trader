@@ -1,10 +1,11 @@
 """
-Iran AI Trader V2.0
+Iran AI Trader Professional
 Ranking Service
 """
 
 from technical_analysis import TechnicalAnalysis
-from score_engine import ScoreEngine
+from multi_timeframe import MultiTimeFrameAnalyzer
+from ai_score_engine import AIScoreEngine
 
 
 class RankingService:
@@ -12,35 +13,98 @@ class RankingService:
     def __init__(self):
 
         self.ta = TechnicalAnalysis()
-        self.engine = ScoreEngine()
 
-    def analyze(self, prices):
+        self.mtf = MultiTimeFrameAnalyzer(
 
-        rsi = self.ta.rsi(prices)
+            self.ta
 
-        macd = self.ta.macd(prices)
-
-        bands = self.ta.bollinger(prices)
-
-        score = self.engine.total_score(
-            rsi,
-            macd,
-            bands,
-            prices[-1]
         )
 
-        signal = self.engine.recommendation(score)
+        self.ai = AIScoreEngine()
+
+
+    # ---------------------------------
+
+    def analyze(
+
+        self,
+
+        history,
+
+        symbol=None
+
+    ):
+
+        """
+        Analyze one symbol history
+        """
+
+
+        analysis = self.mtf.analyze_all(
+
+            history
+
+        )
+
+
+        result = self.ai.score(
+
+            history,
+
+            analysis,
+
+            symbol
+
+        )
+
 
         return {
 
-            "rsi": rsi,
+            "symbol": symbol,
 
-            "macd": macd,
+            "analysis": analysis,
 
-            "bollinger": bands,
 
-            "score": score,
+            # Decision Result
 
-            "signal": signal
+            "detail": result.detail,
+
+            "score": round(
+
+                result.score,
+
+                2
+
+            ),
+
+            "signal": result.signal,
+
+
+            # New AI Information
+
+            "confidence": result.confidence,
+
+            "risk": result.risk,
+
+
+            # Compatibility with Scanner
+
+            "rsi": analysis["daily"].get(
+
+                "rsi"
+
+            ),
+
+            "macd": analysis["daily"].get(
+
+                "macd"
+
+            ),
+
+            "bollinger": analysis["daily"].get(
+
+                "bollinger"
+
+            )
 
         }

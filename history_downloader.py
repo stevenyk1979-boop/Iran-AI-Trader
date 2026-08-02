@@ -1,116 +1,109 @@
 """
 Iran AI Trader Professional
-Historical Data Downloader
+History Downloader V2
 """
 
-from pathlib import Path
+from datetime import datetime, timedelta
 
+from market_cache import MarketCache
 from tsetmc_history import TSETMCHistory
-
 
 
 class HistoryDownloader:
 
+    CACHE_EXPIRE_HOURS = 12
 
     def __init__(self):
 
-        self.data_dir = Path("market_data")
-
-        self.data_dir.mkdir(
-            exist_ok=True
-        )
+        self.cache = MarketCache()
 
         self.provider = TSETMCHistory()
 
+    def _cache_expired(self, symbol):
 
+        info = self.cache.info(symbol)
 
-    def file_path(self, symbol):
+        if not info:
 
-        """
-        Return CSV path for symbol
-        """
+            return True
 
-        return self.data_dir / f"{symbol}.csv"
+        updated = info.get("updated")
 
+        if not updated:
 
+            return True
 
-    def exists(self, symbol):
+        try:
 
-        """
-        Check cached history
-        """
+            updated_time = datetime.strptime(
+                updated,
+                "%Y-%m-%d %H:%M:%S"
+            )
 
-        return self.file_path(symbol).exists()
+        except Exception:
 
+            return True
 
+        age = datetime.now() - updated_time
 
-    def save(self, symbol, records):
-
-        """
-        Save historical candles
-        """
-
-        path = self.file_path(symbol)
-
-
-        with open(
-            path,
-            "w",
-            newline="",
-            encoding="utf-8"
-        ) as file:
-
-
-            import csv
-
-
-            writer = csv.writer(file)
-
-
-            writer.writerow([
-
-                "date",
-                "open",
-                "high",
-                "low",
-                "close",
-                "volume"
-
-            ])
-
-
-            writer.writerows(records)
-
-
-
-        return path
-
-
-
-    def download(self, symbol):
-
-        """
-        Download and cache history
-        """
-
-
-        if self.exists(symbol):
-
-            return self.file_path(symbol)
-
-
-
-        records = self.provider.get_history(
-
-            symbol
-
+        return age > timedelta(
+            hours=self.CACHE_EXPIRE_HOURS
         )
 
+    def get_history(self, symbol, days=30):
 
-        return self.save(
+        """
+        Return history using smart cache
+        """
+
+        if self.cache.exists(symbol):
+
+            if not self._cache_expired(symbol):
+
+                return self.cache.load(symbol)
+
+        history = self.provider.get_history(
 
             symbol,
 
-            records
+            days
 
         )
+
+        self.cache.save(
+
+            symbol,
+
+            history
+
+        )
+
+        return history
+
+    def update(self, symbol, days=30):
+
+        history = self.provider.get_history(
+
+            symbol,
+
+            days
+
+        )
+
+        self.cache.save(
+
+            symbol,
+
+            history
+
+        )
+
+        return history
+
+    def clear(self):
+
+        self.cache.clear()
+
+    def info(self, symbol):
+
+        return self.cache.info(symbol)

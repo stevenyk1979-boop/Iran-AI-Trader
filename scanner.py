@@ -3,87 +3,102 @@ Iran AI Trader Professional
 Scanner Engine
 """
 
-
 from market_service import MarketService
 from ranking_service import RankingService
-from market_universe import MarketUniverse
-
 
 
 class Scanner:
 
-
     def __init__(self):
-
-        self.market = MarketUniverse()
 
         self.market_service = MarketService()
 
         self.ranking_service = RankingService()
 
 
-
-    def load_market(self, symbols):
-
-        """
-        Load market symbols into universe
-        """
-
-        self.market.load(symbols)
-
-
+    # ---------------------------------
 
     def scan(self):
 
-        """
-        Scan all market symbols
-        """
-
         ranking = []
 
+        symbols = self.market_service.symbols()
 
-        symbols = self.market.symbols()
+
+        # تست محدود (فعلاً برای Integration Test)
+        # بعد از موفقیت حذف می‌کنیم
+        # symbols = symbols[:10]
 
 
         for item in symbols:
 
-
             symbol = item["symbol"]
-
-            filename = item["file"]
 
 
             try:
 
-                prices = self.market_service.get_prices(filename)
+                history = self.market_service.history(
 
+                    symbol
 
-            except FileNotFoundError:
-
-                print(
-                    f"Skip {symbol} - data file not found"
                 )
-
-                continue
 
 
             except Exception as error:
 
                 print(
+
                     f"Skip {symbol} - {error}"
+
                 )
 
                 continue
 
 
 
-            if not prices:
+            if history is None:
 
                 continue
 
 
 
-            result = self.ranking_service.analyze(prices)
+            try:
+
+                prices = history.close_prices()
+
+
+            except Exception:
+
+                continue
+
+
+
+            if len(prices) < 20:
+
+                continue
+
+
+
+            try:
+
+                result = self.ranking_service.analyze(
+
+                    history,
+
+                    symbol
+
+                )
+
+
+            except Exception as error:
+
+                print(
+
+                    f"AI Error {symbol} - {error}"
+
+                )
+
+                continue
 
 
 
@@ -97,11 +112,52 @@ class Scanner:
 
                 "price": prices[-1],
 
-                "rsi": result["rsi"],
 
-                "macd": result["macd"],
+                # AI Information
 
-                "bollinger": result["bollinger"]
+                "confidence": result.get(
+
+                    "confidence",
+
+                    0
+
+                ),
+
+                "risk": result.get(
+
+                    "risk",
+
+                    0
+
+                ),
+
+
+                # Technical Data
+
+                "rsi": result.get(
+
+                    "rsi"
+
+                ),
+
+                "macd": result.get(
+
+                    "macd"
+
+                ),
+
+                "bollinger": result.get(
+
+                    "bollinger"
+
+                ),
+
+
+                "detail": result.get(
+
+                    "detail"
+
+                )
 
             })
 
