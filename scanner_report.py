@@ -4,7 +4,7 @@ Scanner Report
 """
 
 from market_statistics import MarketStatistics
-
+from ai_explanation import AIExplanation
 
 class ScannerReport:
 

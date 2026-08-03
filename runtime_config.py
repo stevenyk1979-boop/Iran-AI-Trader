@@ -7,7 +7,7 @@ Runtime Configuration
 
 # Test Mode
 
-TEST_MODE = True
+TEST_MODE = False
 
 # ----------------------------
 

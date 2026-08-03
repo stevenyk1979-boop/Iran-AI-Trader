@@ -12,11 +12,9 @@ class Scanner:
     def __init__(self):
 
         self.market_service = MarketService()
-
         self.ranking_service = RankingService()
 
-
-    # ---------------------------------
+    # ------------------------------------------------------------
 
     def scan(self):
 
@@ -24,64 +22,51 @@ class Scanner:
 
         symbols = self.market_service.symbols()
 
+        print(f"Total Symbols : {len(symbols)}")
 
-        # تست محدود (فعلاً برای Integration Test)
-        # بعد از موفقیت حذف می‌کنیم
+        # برای تست در صورت نیاز
         # symbols = symbols[:10]
 
-
-        for item in symbols:
+        for index, item in enumerate(symbols, start=1):
 
             symbol = item["symbol"]
 
+            print(f"[{index}/{len(symbols)}] {symbol}")
+
+            # ----------------------------------------------------
 
             try:
 
-                history = self.market_service.history(
-
-                    symbol
-
-                )
-
+                history = self.market_service.history(symbol)
 
             except Exception as error:
 
-                print(
-
-                    f"Skip {symbol} - {error}"
-
-                )
-
+                print(f"Skip {symbol} - {error}")
                 continue
-
-
 
             if history is None:
 
                 continue
 
-
+            # ----------------------------------------------------
 
             try:
 
                 prices = history.close_prices()
 
-
             except Exception:
 
                 continue
-
-
 
             if len(prices) < 20:
 
                 continue
 
-
+            # ----------------------------------------------------
 
             try:
 
-                result = self.ranking_service.analyze(
+                decision = self.ranking_service.analyze(
 
                     history,
 
@@ -89,79 +74,36 @@ class Scanner:
 
                 )
 
-
             except Exception as error:
 
-                print(
-
-                    f"AI Error {symbol} - {error}"
-
-                )
-
+                print(f"AI Error {symbol} - {error}")
                 continue
 
-
+            # ----------------------------------------------------
 
             ranking.append({
 
-                "symbol": symbol,
+                "decision": decision,
 
-                "score": result["score"],
+                "symbol": decision.symbol,
 
-                "signal": result["signal"],
+                "score": round(decision.score, 2),
+
+                "signal": decision.signal,
+
+                "confidence": round(decision.confidence, 2),
+
+                "risk": round(decision.risk, 2),
 
                 "price": prices[-1],
 
+                "reasons": decision.reasons,
 
-                # AI Information
-
-                "confidence": result.get(
-
-                    "confidence",
-
-                    0
-
-                ),
-
-                "risk": result.get(
-
-                    "risk",
-
-                    0
-
-                ),
-
-
-                # Technical Data
-
-                "rsi": result.get(
-
-                    "rsi"
-
-                ),
-
-                "macd": result.get(
-
-                    "macd"
-
-                ),
-
-                "bollinger": result.get(
-
-                    "bollinger"
-
-                ),
-
-
-                "detail": result.get(
-
-                    "detail"
-
-                )
+                "detail": decision.detail
 
             })
 
-
+        # ----------------------------------------------------
 
         ranking.sort(
 
@@ -170,6 +112,5 @@ class Scanner:
             reverse=True
 
         )
-
 
         return ranking
