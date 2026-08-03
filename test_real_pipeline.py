@@ -1,27 +1,15 @@
 """
 Iran AI Trader Professional
 Real Pipeline Test
-Sprint29-D
+Sprint31
 """
 
-from scanner import Scanner
-from entry_validator import EntryValidator
 from real_pipeline import RealPipeline
 
 
 def main():
 
-    scanner = Scanner()
-
-    validator = EntryValidator()
-
-    pipeline = RealPipeline(
-
-        scanner,
-
-        validator
-
-    )
+    pipeline = RealPipeline()
 
     result = pipeline.run()
 
@@ -32,19 +20,18 @@ def main():
     print("=" * 60)
 
     print(
-
         "Candidates :",
-
         len(result["candidates"])
-
     )
 
     print(
-
         "Decisions :",
-
         len(result["decisions"])
+    )
 
+    print(
+        "Market Regime :",
+        result["regime"]["regime"]
     )
 
 
