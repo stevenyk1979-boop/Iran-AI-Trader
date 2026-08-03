@@ -26,7 +26,7 @@ class FakeValidator:
             return {
 
 
-                "status": "READY"
+                 "status": "READY TO BUY"
 
             }
 

@@ -22,6 +22,7 @@ class TradeCandidateEngine:
         Classify entry validation result
         """
 
+
         status = validation.get(
 
             "status",
@@ -60,9 +61,7 @@ class TradeCandidateEngine:
     ):
 
         """
-
         Create trade candidate object
-
         """
 
 
@@ -83,6 +82,7 @@ class TradeCandidateEngine:
             ),
 
 
+
             "score": item.get(
 
                 "score",
@@ -90,6 +90,7 @@ class TradeCandidateEngine:
                 0
 
             ),
+
 
 
             "signal": item.get(
@@ -101,6 +102,7 @@ class TradeCandidateEngine:
             ),
 
 
+
             "confidence": item.get(
 
                 "confidence",
@@ -108,6 +110,7 @@ class TradeCandidateEngine:
                 0
 
             ),
+
 
 
             "risk": item.get(
@@ -119,7 +122,16 @@ class TradeCandidateEngine:
             ),
 
 
+
+            # Candidate status
+
             "category": category,
+
+
+            # Interface compatibility
+
+            "status": category,
+
 
 
             "validation": validation
@@ -141,13 +153,12 @@ class TradeCandidateEngine:
     ):
 
         """
-
         Generate candidates from watch list
-
         """
 
 
         candidates = []
+
 
 
         for item in watchlist:
@@ -176,6 +187,7 @@ class TradeCandidateEngine:
             )
 
 
+
         candidates.sort(
 
             key=lambda x: x["score"],
@@ -183,6 +195,7 @@ class TradeCandidateEngine:
             reverse=True
 
         )
+
 
 
         return candidates
