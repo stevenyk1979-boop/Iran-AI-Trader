@@ -1,12 +1,14 @@
 """
 Iran AI Trader Professional
-Scanner Engine Sprint27 Debug
+Scanner Engine
+Sprint28-A
 """
 
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from market_service import MarketService
 from ranking_service import RankingService
+from watchlist import WatchList
 
 from market_config import MAX_THREADS
 
@@ -18,6 +20,8 @@ class Scanner:
         self.market_service = MarketService()
 
         self.ranking_service = RankingService()
+
+        self.watchlist = WatchList()
 
         self.failed_symbols = []
 
@@ -55,7 +59,7 @@ class Scanner:
             if len(prices) < 20:
 
                 raise Exception(
-                    f"Not enough candles: {len(prices)}"
+                    "Not enough candles"
                 )
 
 
@@ -68,51 +72,17 @@ class Scanner:
             )
 
 
-            return {
+            return result
 
-                "symbol": symbol,
-
-                "score": result["score"],
-
-                "signal": result["signal"],
-
-                "confidence": result.get(
-                    "confidence",
-                    0
-                ),
-
-                "risk": result.get(
-                    "risk",
-                    0
-                ),
-
-                "price": prices[-1],
-
-
-                "rsi": result.get(
-                    "rsi"
-                ),
-
-                "macd": result.get(
-                    "macd"
-                ),
-
-                "bollinger": result.get(
-                    "bollinger"
-                ),
-
-                "detail": result.get(
-                    "detail"
-                )
-
-            }
 
 
         except Exception as error:
 
 
             print(
+
                 f"FAILED {symbol} -> {error}"
+
             )
 
 
@@ -131,6 +101,57 @@ class Scanner:
 
     # -------------------------------------------------
 
+    def update_watchlist(
+
+        self,
+
+        ranking
+
+    ):
+
+        """
+        Add strong opportunities
+        to AI Watch List
+        """
+
+
+        for item in ranking:
+
+
+            if item["score"] >= 70:
+
+
+                symbol = item["symbol"]
+
+
+                if not self.watchlist.exists(
+
+                    symbol
+
+                ):
+
+
+                    self.watchlist.add(
+
+                        symbol,
+
+                        item["score"],
+
+                        item["signal"],
+
+                        item.get(
+
+                            "detail",
+
+                            {}
+
+                        )
+
+                    )
+
+
+    # -------------------------------------------------
+
     def scan(self):
 
 
@@ -143,22 +164,29 @@ class Scanner:
         print()
 
         print(
+
             f"Total Symbols : {len(symbols)}"
+
         )
-
-
-        
-
-        print()
-
-        
 
 
         print()
 
         print(
-            "Starting Parallel Scan..."
+
+            f"Symbols To Scan : {len(symbols)}"
+
         )
+
+
+        print()
+
+        print(
+
+            "Starting Parallel Scan..."
+
+        )
+
 
 
         with ThreadPoolExecutor(
@@ -173,6 +201,7 @@ class Scanner:
 
             for item in symbols:
 
+
                 futures.append(
 
                     executor.submit(
@@ -186,10 +215,11 @@ class Scanner:
                 )
 
 
+
             completed = 0
 
-
             total = len(futures)
+
 
 
             for future in as_completed(futures):
@@ -203,14 +233,73 @@ class Scanner:
 
                 if result:
 
-                    ranking.append(result)
+
+                    ranking.append({
+
+                        "symbol": result["symbol"],
+
+                        "score": result["score"],
+
+                        "signal": result["signal"],
+
+                        "confidence": result.get(
+
+                            "confidence",
+
+                            0
+
+                        ),
+
+                        "risk": result.get(
+
+                            "risk",
+
+                            0
+
+                        ),
+
+                        "price": result.get(
+
+                            "price"
+
+                        ),
+
+                        "rsi": result.get(
+
+                            "rsi"
+
+                        ),
+
+                        "macd": result.get(
+
+                            "macd"
+
+                        ),
+
+                        "bollinger": result.get(
+
+                            "bollinger"
+
+                        ),
+
+                        "detail": result.get(
+
+                            "detail"
+
+                        )
+
+                    })
 
 
-                print(
 
-                    f"Progress {completed}/{total}"
+                if completed % 50 == 0:
 
-                )
+
+                    print(
+
+                        f"Processed {completed}/{total}"
+
+                    )
 
 
 
@@ -223,31 +312,55 @@ class Scanner:
         )
 
 
+
+        # Update AI Watch List
+
+        self.update_watchlist(
+
+            ranking
+
+        )
+
+
+
         print()
 
         print(
+
             "=" * 60
+
         )
 
         print(
+
             "Scan Summary"
+
         )
 
         print(
+
             "=" * 60
+
         )
 
 
         print(
+
             "Successful :",
+
             len(ranking)
+
         )
 
 
         print(
+
             "Failed     :",
+
             len(self.failed_symbols)
+
         )
+
 
 
         return ranking
