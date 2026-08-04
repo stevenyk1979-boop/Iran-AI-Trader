@@ -7,12 +7,9 @@ Sprint28-D
 
 class TradeCandidateEngine:
 
-
     def __init__(self):
 
         pass
-
-
 
     # -------------------------------------
 
@@ -22,7 +19,6 @@ class TradeCandidateEngine:
         Classify entry validation result
         """
 
-
         status = validation.get(
 
             "status",
@@ -31,22 +27,17 @@ class TradeCandidateEngine:
 
         )
 
-
         if status == "READY TO BUY":
 
             return "READY"
-
 
         elif status == "WATCH":
 
             return "WATCH"
 
-
         else:
 
             return "REJECT"
-
-
 
     # -------------------------------------
 
@@ -64,24 +55,19 @@ class TradeCandidateEngine:
         Create trade candidate object
         """
 
-
         category = self.classify(
 
             validation
 
         )
 
-
         return {
-
 
             "symbol": item.get(
 
                 "symbol"
 
             ),
-
-
 
             "score": item.get(
 
@@ -91,8 +77,6 @@ class TradeCandidateEngine:
 
             ),
 
-
-
             "signal": item.get(
 
                 "signal",
@@ -100,8 +84,6 @@ class TradeCandidateEngine:
                 "HOLD"
 
             ),
-
-
 
             "confidence": item.get(
 
@@ -111,8 +93,6 @@ class TradeCandidateEngine:
 
             ),
 
-
-
             "risk": item.get(
 
                 "risk",
@@ -121,24 +101,21 @@ class TradeCandidateEngine:
 
             ),
 
+            "price": item.get(
 
+                "price",
 
-            # Candidate status
+                0
+
+            ),
 
             "category": category,
 
-
-            # Interface compatibility
-
             "status": category,
-
-
 
             "validation": validation
 
         }
-
-
 
     # -------------------------------------
 
@@ -156,20 +133,15 @@ class TradeCandidateEngine:
         Generate candidates from watch list
         """
 
-
         candidates = []
 
-
-
         for item in watchlist:
-
 
             validation = validator.validate(
 
                 item
 
             )
-
 
             candidate = self.create_candidate(
 
@@ -179,14 +151,11 @@ class TradeCandidateEngine:
 
             )
 
-
             candidates.append(
 
                 candidate
 
             )
-
-
 
         candidates.sort(
 
@@ -195,7 +164,5 @@ class TradeCandidateEngine:
             reverse=True
 
         )
-
-
 
         return candidates

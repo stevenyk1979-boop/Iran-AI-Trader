@@ -1,5 +1,107 @@
 [
     {
+        "symbol": "وپویا",
+        "score": 96.23,
+        "signal": "STRONG BUY",
+        "status": "READY TO BUY",
+        "added_date": "2026-08-04 12:08:49.840698",
+        "reasons": {
+            "raw_score": 100.0,
+            "final_score": 96.23,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 25,
+                    "max_score": 25,
+                    "ratio": 4.81,
+                    "reason": [
+                        "Extreme Volume Increase"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 7.54,
+                "volatility": 1.51,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "کانسار",
+        "score": 95.62,
+        "signal": "STRONG BUY",
+        "status": "READY TO BUY",
+        "added_date": "2026-08-04 12:08:49.862854",
+        "reasons": {
+            "raw_score": 100.0,
+            "final_score": 95.62,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 25,
+                    "max_score": 25,
+                    "ratio": 13.26,
+                    "reason": [
+                        "Extreme Volume Increase"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 8.77,
+                "volatility": 1.75,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
         "symbol": "چکارن",
         "score": 94.9,
         "signal": "STRONG BUY",
@@ -36,6 +138,57 @@
             "risk": {
                 "risk": 10.2,
                 "volatility": 2.04,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "فصبا",
+        "score": 94.75,
+        "signal": "STRONG BUY",
+        "status": "READY TO BUY",
+        "added_date": "2026-08-04 12:08:49.874425",
+        "reasons": {
+            "raw_score": 100.0,
+            "final_score": 94.75,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 25,
+                    "max_score": 25,
+                    "ratio": 3.51,
+                    "reason": [
+                        "Extreme Volume Increase"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 10.5,
+                "volatility": 2.1,
                 "reason": "Low volatility"
             },
             "confidence": {
@@ -153,6 +306,57 @@
         }
     },
     {
+        "symbol": "شیفته",
+        "score": 93.44,
+        "signal": "STRONG BUY",
+        "status": "READY TO BUY",
+        "added_date": "2026-08-04 12:08:49.888481",
+        "reasons": {
+            "raw_score": 100.0,
+            "final_score": 93.44,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 25,
+                    "max_score": 25,
+                    "ratio": 5.08,
+                    "reason": [
+                        "Extreme Volume Increase"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 13.13,
+                "volatility": 2.63,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
         "symbol": "رپویا",
         "score": 93.41,
         "signal": "STRONG BUY",
@@ -189,6 +393,57 @@
             "risk": {
                 "risk": 13.19,
                 "volatility": 2.64,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "آواک",
+        "score": 93.35,
+        "signal": "STRONG BUY",
+        "status": "READY TO BUY",
+        "added_date": "2026-08-04 12:08:49.902329",
+        "reasons": {
+            "raw_score": 100.0,
+            "final_score": 93.35,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 25,
+                    "max_score": 25,
+                    "ratio": 3.69,
+                    "reason": [
+                        "Extreme Volume Increase"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 13.3,
+                "volatility": 2.66,
                 "reason": "Low volatility"
             },
             "confidence": {
@@ -342,6 +597,57 @@
             "risk": {
                 "risk": 8.36,
                 "volatility": 1.67,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "تپمپی",
+        "score": 88.07,
+        "signal": "STRONG BUY",
+        "status": "READY TO BUY",
+        "added_date": "2026-08-04 12:08:49.914460",
+        "reasons": {
+            "raw_score": 92.31,
+            "final_score": 88.07,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 20,
+                    "max_score": 25,
+                    "ratio": 2.26,
+                    "reason": [
+                        "Strong Volume Increase"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 9.19,
+                "volatility": 1.84,
                 "reason": "Low volatility"
             },
             "confidence": {
@@ -765,6 +1071,108 @@
         }
     },
     {
+        "symbol": "تجلی",
+        "score": 86.84,
+        "signal": "STRONG BUY",
+        "status": "READY TO BUY",
+        "added_date": "2026-08-04 12:08:49.925600",
+        "reasons": {
+            "raw_score": 92.31,
+            "final_score": 86.84,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 20,
+                    "max_score": 25,
+                    "ratio": 2.4,
+                    "reason": [
+                        "Strong Volume Increase"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 11.85,
+                "volatility": 2.37,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "کاوه",
+        "score": 86.63,
+        "signal": "STRONG BUY",
+        "status": "READY TO BUY",
+        "added_date": "2026-08-04 12:08:49.941246",
+        "reasons": {
+            "raw_score": 92.31,
+            "final_score": 86.63,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 20,
+                    "max_score": 25,
+                    "ratio": 2.75,
+                    "reason": [
+                        "Strong Volume Increase"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 12.31,
+                "volatility": 2.46,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
         "symbol": "وپترو",
         "score": 86.59,
         "signal": "STRONG BUY",
@@ -801,6 +1209,159 @@
             "risk": {
                 "risk": 12.38,
                 "volatility": 2.48,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "آریان",
+        "score": 86.58,
+        "signal": "STRONG BUY",
+        "status": "READY TO BUY",
+        "added_date": "2026-08-04 12:08:49.953464",
+        "reasons": {
+            "raw_score": 92.31,
+            "final_score": 86.58,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 20,
+                    "max_score": 25,
+                    "ratio": 2.62,
+                    "reason": [
+                        "Strong Volume Increase"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 12.4,
+                "volatility": 2.48,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "کوچین",
+        "score": 86.57,
+        "signal": "STRONG BUY",
+        "status": "READY TO BUY",
+        "added_date": "2026-08-04 12:08:49.966484",
+        "reasons": {
+            "raw_score": 92.31,
+            "final_score": 86.57,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 20,
+                    "max_score": 25,
+                    "ratio": 2.25,
+                    "reason": [
+                        "Strong Volume Increase"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 12.44,
+                "volatility": 2.49,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "رنیک",
+        "score": 86.53,
+        "signal": "STRONG BUY",
+        "status": "READY TO BUY",
+        "added_date": "2026-08-04 12:08:49.977174",
+        "reasons": {
+            "raw_score": 92.31,
+            "final_score": 86.53,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 20,
+                    "max_score": 25,
+                    "ratio": 2.16,
+                    "reason": [
+                        "Strong Volume Increase"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 12.52,
+                "volatility": 2.5,
                 "reason": "Low volatility"
             },
             "confidence": {
@@ -1122,6 +1683,210 @@
         }
     },
     {
+        "symbol": "تملت",
+        "score": 81.82,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:49.989281",
+        "reasons": {
+            "raw_score": 84.62,
+            "final_score": 81.82,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 15,
+                    "max_score": 25,
+                    "ratio": 1.69,
+                    "reason": [
+                        "Good Volume"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 6.61,
+                "volatility": 1.32,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "وشهر",
+        "score": 81.53,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.002908",
+        "reasons": {
+            "raw_score": 84.62,
+            "final_score": 81.53,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 15,
+                    "max_score": 25,
+                    "ratio": 1.63,
+                    "reason": [
+                        "Good Volume"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 7.3,
+                "volatility": 1.46,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "ملت",
+        "score": 81.51,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.014189",
+        "reasons": {
+            "raw_score": 84.62,
+            "final_score": 81.51,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 15,
+                    "max_score": 25,
+                    "ratio": 1.7,
+                    "reason": [
+                        "Good Volume"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 7.33,
+                "volatility": 1.47,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "البرز",
+        "score": 80.82,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.028438",
+        "reasons": {
+            "raw_score": 84.62,
+            "final_score": 80.82,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 15,
+                    "max_score": 25,
+                    "ratio": 1.64,
+                    "reason": [
+                        "Good Volume"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 8.97,
+                "volatility": 1.79,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
         "symbol": "فروژ",
         "score": 80.67,
         "signal": "BUY",
@@ -1223,6 +1988,108 @@
         }
     },
     {
+        "symbol": "فهامون",
+        "score": 80.58,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.042872",
+        "reasons": {
+            "raw_score": 84.62,
+            "final_score": 80.58,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 15,
+                    "max_score": 25,
+                    "ratio": 1.53,
+                    "reason": [
+                        "Good Volume"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 9.53,
+                "volatility": 1.91,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "تکنار",
+        "score": 80.31,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.058853",
+        "reasons": {
+            "raw_score": 84.62,
+            "final_score": 80.31,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 15,
+                    "max_score": 25,
+                    "ratio": 1.89,
+                    "reason": [
+                        "Good Volume"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 10.18,
+                "volatility": 2.04,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
         "symbol": "وسپهر",
         "score": 80.22,
         "signal": "BUY",
@@ -1274,6 +2141,57 @@
         }
     },
     {
+        "symbol": "بترانس",
+        "score": 80.14,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.072203",
+        "reasons": {
+            "raw_score": 84.62,
+            "final_score": 80.14,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 15,
+                    "max_score": 25,
+                    "ratio": 1.8,
+                    "reason": [
+                        "Good Volume"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 10.58,
+                "volatility": 2.12,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
         "symbol": "واعتبار",
         "score": 80.11,
         "signal": "BUY",
@@ -1309,6 +2227,57 @@
             },
             "risk": {
                 "risk": 10.65,
+                "volatility": 2.13,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "گنگین",
+        "score": 80.1,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.083494",
+        "reasons": {
+            "raw_score": 84.62,
+            "final_score": 80.1,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 10,
+                    "max_score": 20,
+                    "reason": [
+                        "Strong but overbought"
+                    ]
+                },
+                "volume": {
+                    "score": 25,
+                    "max_score": 25,
+                    "ratio": 6.36,
+                    "reason": [
+                        "Extreme Volume Increase"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 10.67,
                 "volatility": 2.13,
                 "reason": "Low volatility"
             },
@@ -1376,6 +2345,57 @@
         }
     },
     {
+        "symbol": "وآوا",
+        "score": 80.03,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.094846",
+        "reasons": {
+            "raw_score": 84.62,
+            "final_score": 80.03,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 10,
+                    "max_score": 20,
+                    "reason": [
+                        "Strong but overbought"
+                    ]
+                },
+                "volume": {
+                    "score": 25,
+                    "max_score": 25,
+                    "ratio": 3.1,
+                    "reason": [
+                        "Extreme Volume Increase"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 10.84,
+                "volatility": 2.17,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
         "symbol": "پکویر",
         "score": 80.01,
         "signal": "BUY",
@@ -1411,6 +2431,57 @@
             },
             "risk": {
                 "risk": 10.88,
+                "volatility": 2.18,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "تایرا",
+        "score": 80.0,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.109614",
+        "reasons": {
+            "raw_score": 84.62,
+            "final_score": 80.0,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 15,
+                    "max_score": 25,
+                    "ratio": 1.64,
+                    "reason": [
+                        "Good Volume"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 10.92,
                 "volatility": 2.18,
                 "reason": "Low volatility"
             },
@@ -1478,6 +2549,57 @@
         }
     },
     {
+        "symbol": "کازرو",
+        "score": 79.92,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.121626",
+        "reasons": {
+            "raw_score": 84.62,
+            "final_score": 79.92,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 15,
+                    "max_score": 25,
+                    "ratio": 1.66,
+                    "reason": [
+                        "Good Volume"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 11.09,
+                "volatility": 2.22,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
         "symbol": "کگهر",
         "score": 79.91,
         "signal": "BUY",
@@ -1514,6 +2636,108 @@
             "risk": {
                 "risk": 11.11,
                 "volatility": 2.22,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "آریا",
+        "score": 79.88,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.136657",
+        "reasons": {
+            "raw_score": 84.62,
+            "final_score": 79.88,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 15,
+                    "max_score": 25,
+                    "ratio": 1.54,
+                    "reason": [
+                        "Good Volume"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 11.2,
+                "volatility": 2.24,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "اتکاسا",
+        "score": 79.83,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.152746",
+        "reasons": {
+            "raw_score": 84.62,
+            "final_score": 79.83,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 10,
+                    "max_score": 20,
+                    "reason": [
+                        "Strong but overbought"
+                    ]
+                },
+                "volume": {
+                    "score": 25,
+                    "max_score": 25,
+                    "ratio": 4.4,
+                    "reason": [
+                        "Extreme Volume Increase"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 11.3,
+                "volatility": 2.26,
                 "reason": "Low volatility"
             },
             "confidence": {
@@ -1784,6 +3008,57 @@
         }
     },
     {
+        "symbol": "کساوه",
+        "score": 79.68,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.169141",
+        "reasons": {
+            "raw_score": 84.62,
+            "final_score": 79.68,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 10,
+                    "max_score": 20,
+                    "reason": [
+                        "Strong but overbought"
+                    ]
+                },
+                "volume": {
+                    "score": 25,
+                    "max_score": 25,
+                    "ratio": 3.39,
+                    "reason": [
+                        "Extreme Volume Increase"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 11.66,
+                "volatility": 2.33,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
         "symbol": "چکاپا",
         "score": 79.64,
         "signal": "BUY",
@@ -2039,6 +3314,56 @@
         }
     },
     {
+        "symbol": "سیلام",
+        "score": 79.56,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.184332",
+        "reasons": {
+            "raw_score": 84.62,
+            "final_score": 79.56,
+            "engines": {
+                "trend": {
+                    "score": 10,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 25,
+                    "max_score": 25,
+                    "ratio": 3.16,
+                    "reason": [
+                        "Extreme Volume Increase"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 11.95,
+                "volatility": 2.39,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
         "symbol": "وتوسکا",
         "score": 79.52,
         "signal": "BUY",
@@ -2191,6 +3516,57 @@
         }
     },
     {
+        "symbol": "سبهان",
+        "score": 79.39,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.199433",
+        "reasons": {
+            "raw_score": 84.62,
+            "final_score": 79.39,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 15,
+                    "max_score": 25,
+                    "ratio": 1.69,
+                    "reason": [
+                        "Good Volume"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 12.36,
+                "volatility": 2.47,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
         "symbol": "سفار",
         "score": 79.35,
         "signal": "BUY",
@@ -2226,6 +3602,108 @@
             },
             "risk": {
                 "risk": 12.44,
+                "volatility": 2.49,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "بنو",
+        "score": 79.34,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.216927",
+        "reasons": {
+            "raw_score": 84.62,
+            "final_score": 79.34,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 15,
+                    "max_score": 25,
+                    "ratio": 1.51,
+                    "reason": [
+                        "Good Volume"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 12.48,
+                "volatility": 2.5,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "رتکو",
+        "score": 79.34,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.234811",
+        "reasons": {
+            "raw_score": 84.62,
+            "final_score": 79.34,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 15,
+                    "max_score": 25,
+                    "ratio": 1.63,
+                    "reason": [
+                        "Good Volume"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 12.47,
                 "volatility": 2.49,
                 "reason": "Low volatility"
             },
@@ -2344,6 +3822,57 @@
         }
     },
     {
+        "symbol": "اخشان",
+        "score": 79.2,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.247160",
+        "reasons": {
+            "raw_score": 84.62,
+            "final_score": 79.2,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 15,
+                    "max_score": 25,
+                    "ratio": 1.63,
+                    "reason": [
+                        "Good Volume"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 12.81,
+                "volatility": 2.56,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
         "symbol": "سپیدار",
         "score": 79.16,
         "signal": "BUY",
@@ -2430,6 +3959,57 @@
             },
             "risk": {
                 "risk": 12.95,
+                "volatility": 2.59,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "سخوز",
+        "score": 79.14,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.258338",
+        "reasons": {
+            "raw_score": 84.62,
+            "final_score": 79.14,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 15,
+                    "max_score": 25,
+                    "ratio": 1.63,
+                    "reason": [
+                        "Good Volume"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 12.93,
                 "volatility": 2.59,
                 "reason": "Low volatility"
             },
@@ -2533,6 +4113,56 @@
             "risk": {
                 "risk": 13.28,
                 "volatility": 2.66,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "زنگان",
+        "score": 78.97,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.274362",
+        "reasons": {
+            "raw_score": 84.62,
+            "final_score": 78.97,
+            "engines": {
+                "trend": {
+                    "score": 10,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 25,
+                    "max_score": 25,
+                    "ratio": 3.72,
+                    "reason": [
+                        "Extreme Volume Increase"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 13.34,
+                "volatility": 2.67,
                 "reason": "Low volatility"
             },
             "confidence": {
@@ -2701,6 +4331,159 @@
         }
     },
     {
+        "symbol": "فاذر",
+        "score": 75.42,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.291301",
+        "reasons": {
+            "raw_score": 84.62,
+            "final_score": 75.42,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 10,
+                    "max_score": 20,
+                    "reason": [
+                        "Strong but overbought"
+                    ]
+                },
+                "volume": {
+                    "score": 25,
+                    "max_score": 25,
+                    "ratio": 4.97,
+                    "reason": [
+                        "Extreme Volume Increase"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 21.74,
+                "volatility": 4.35,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "مهرگان",
+        "score": 74.25,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.305493",
+        "reasons": {
+            "raw_score": 76.92,
+            "final_score": 74.25,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 10,
+                    "max_score": 25,
+                    "ratio": 1.35,
+                    "reason": [
+                        "Volume Improving"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 6.94,
+                "volatility": 1.39,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "وسالت",
+        "score": 74.23,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.327033",
+        "reasons": {
+            "raw_score": 76.92,
+            "final_score": 74.23,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 10,
+                    "max_score": 25,
+                    "ratio": 1.32,
+                    "reason": [
+                        "Volume Improving"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 7.0,
+                "volatility": 1.4,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
         "symbol": "رفاه",
         "score": 73.92,
         "signal": "BUY",
@@ -2737,6 +4520,108 @@
             "risk": {
                 "risk": 7.8,
                 "volatility": 1.56,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "پتوسعه",
+        "score": 73.8,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.340428",
+        "reasons": {
+            "raw_score": 76.92,
+            "final_score": 73.8,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 10,
+                    "max_score": 25,
+                    "ratio": 1.48,
+                    "reason": [
+                        "Volume Improving"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 8.12,
+                "volatility": 1.62,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "ولپارس",
+        "score": 73.79,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.358153",
+        "reasons": {
+            "raw_score": 76.92,
+            "final_score": 73.79,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 10,
+                    "max_score": 20,
+                    "reason": [
+                        "Strong but overbought"
+                    ]
+                },
+                "volume": {
+                    "score": 20,
+                    "max_score": 25,
+                    "ratio": 2.1,
+                    "reason": [
+                        "Strong Volume Increase"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 8.15,
+                "volatility": 1.63,
                 "reason": "Low volatility"
             },
             "confidence": {
@@ -2905,6 +4790,210 @@
         }
     },
     {
+        "symbol": "وپاسار",
+        "score": 73.27,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.376128",
+        "reasons": {
+            "raw_score": 76.92,
+            "final_score": 73.27,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 10,
+                    "max_score": 25,
+                    "ratio": 1.4,
+                    "reason": [
+                        "Volume Improving"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 9.5,
+                "volatility": 1.9,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "تکاردان",
+        "score": 73.24,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.390900",
+        "reasons": {
+            "raw_score": 76.92,
+            "final_score": 73.24,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 10,
+                    "max_score": 20,
+                    "reason": [
+                        "Strong but overbought"
+                    ]
+                },
+                "volume": {
+                    "score": 20,
+                    "max_score": 25,
+                    "ratio": 2.15,
+                    "reason": [
+                        "Strong Volume Increase"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 9.57,
+                "volatility": 1.91,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "سهرمز",
+        "score": 73.23,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.407748",
+        "reasons": {
+            "raw_score": 76.92,
+            "final_score": 73.23,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 10,
+                    "max_score": 25,
+                    "ratio": 1.47,
+                    "reason": [
+                        "Volume Improving"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 9.61,
+                "volatility": 1.92,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "سمتاز",
+        "score": 73.21,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.424913",
+        "reasons": {
+            "raw_score": 76.92,
+            "final_score": 73.21,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 10,
+                    "max_score": 25,
+                    "ratio": 1.22,
+                    "reason": [
+                        "Volume Improving"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 9.66,
+                "volatility": 1.93,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
         "symbol": "ومدیر",
         "score": 73.2,
         "signal": "BUY",
@@ -2940,6 +5029,57 @@
             "risk": {
                 "risk": 9.68,
                 "volatility": 1.94,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "بگیلان",
+        "score": 73.13,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.438734",
+        "reasons": {
+            "raw_score": 76.92,
+            "final_score": 73.13,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 10,
+                    "max_score": 25,
+                    "ratio": 1.4,
+                    "reason": [
+                        "Volume Improving"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 9.85,
+                "volatility": 1.97,
                 "reason": "Low volatility"
             },
             "confidence": {
@@ -2991,6 +5131,57 @@
             "risk": {
                 "risk": 10.31,
                 "volatility": 2.06,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "آبادا",
+        "score": 72.93,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.457618",
+        "reasons": {
+            "raw_score": 76.92,
+            "final_score": 72.93,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 10,
+                    "max_score": 25,
+                    "ratio": 1.25,
+                    "reason": [
+                        "Volume Improving"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 10.38,
+                "volatility": 2.08,
                 "reason": "Low volatility"
             },
             "confidence": {
@@ -3261,6 +5452,108 @@
         }
     },
     {
+        "symbol": "وسینا",
+        "score": 72.85,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.474595",
+        "reasons": {
+            "raw_score": 76.92,
+            "final_score": 72.85,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 10,
+                    "max_score": 25,
+                    "ratio": 1.28,
+                    "reason": [
+                        "Volume Improving"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 10.58,
+                "volatility": 2.12,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "خدیزل",
+        "score": 72.85,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.495206",
+        "reasons": {
+            "raw_score": 76.92,
+            "final_score": 72.85,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 10,
+                    "max_score": 25,
+                    "ratio": 1.31,
+                    "reason": [
+                        "Volume Improving"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 10.59,
+                "volatility": 2.12,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
         "symbol": "بموتو",
         "score": 72.84,
         "signal": "BUY",
@@ -3515,6 +5808,56 @@
         }
     },
     {
+        "symbol": "فرآور",
+        "score": 72.71,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.515353",
+        "reasons": {
+            "raw_score": 76.92,
+            "final_score": 72.71,
+            "engines": {
+                "trend": {
+                    "score": 10,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 20,
+                    "max_score": 25,
+                    "ratio": 2.12,
+                    "reason": [
+                        "Strong Volume Increase"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 10.95,
+                "volatility": 2.19,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
         "symbol": "تپولا",
         "score": 72.65,
         "signal": "BUY",
@@ -3551,6 +5894,107 @@
             "risk": {
                 "risk": 11.12,
                 "volatility": 2.22,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "مهرمام",
+        "score": 72.62,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.535645",
+        "reasons": {
+            "raw_score": 76.92,
+            "final_score": 72.62,
+            "engines": {
+                "trend": {
+                    "score": 10,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 20,
+                    "max_score": 25,
+                    "ratio": 2.13,
+                    "reason": [
+                        "Strong Volume Increase"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 11.2,
+                "volatility": 2.24,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "کحافظ",
+        "score": 72.61,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.553531",
+        "reasons": {
+            "raw_score": 76.92,
+            "final_score": 72.61,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 10,
+                    "max_score": 25,
+                    "ratio": 1.38,
+                    "reason": [
+                        "Volume Improving"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 11.21,
+                "volatility": 2.24,
                 "reason": "Low volatility"
             },
             "confidence": {
@@ -3800,6 +6244,56 @@
                     "ratio": 1.37,
                     "reason": [
                         "Volume Improving"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 11.48,
+                "volatility": 2.3,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "وهور",
+        "score": 72.51,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.569691",
+        "reasons": {
+            "raw_score": 76.92,
+            "final_score": 72.51,
+            "engines": {
+                "trend": {
+                    "score": 10,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 20,
+                    "max_score": 25,
+                    "ratio": 2.86,
+                    "reason": [
+                        "Strong Volume Increase"
                     ]
                 }
             },
@@ -4125,6 +6619,57 @@
         }
     },
     {
+        "symbol": "ثفارس",
+        "score": 72.31,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.588317",
+        "reasons": {
+            "raw_score": 76.92,
+            "final_score": 72.31,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 10,
+                    "max_score": 25,
+                    "ratio": 1.23,
+                    "reason": [
+                        "Volume Improving"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 11.99,
+                "volatility": 2.4,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
         "symbol": "بساما",
         "score": 72.3,
         "signal": "BUY",
@@ -4263,6 +6808,108 @@
             "risk": {
                 "risk": 12.15,
                 "volatility": 2.43,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "دابور",
+        "score": 72.18,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.614697",
+        "reasons": {
+            "raw_score": 76.92,
+            "final_score": 72.18,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 10,
+                    "max_score": 20,
+                    "reason": [
+                        "Strong but overbought"
+                    ]
+                },
+                "volume": {
+                    "score": 20,
+                    "max_score": 25,
+                    "ratio": 2.13,
+                    "reason": [
+                        "Strong Volume Increase"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 12.32,
+                "volatility": 2.46,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "کگل",
+        "score": 72.17,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.635471",
+        "reasons": {
+            "raw_score": 76.92,
+            "final_score": 72.17,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 10,
+                    "max_score": 20,
+                    "reason": [
+                        "Strong but overbought"
+                    ]
+                },
+                "volume": {
+                    "score": 20,
+                    "max_score": 25,
+                    "ratio": 2.11,
+                    "reason": [
+                        "Strong Volume Increase"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 12.35,
+                "volatility": 2.47,
                 "reason": "Low volatility"
             },
             "confidence": {
@@ -4431,6 +7078,108 @@
         }
     },
     {
+        "symbol": "زدشت",
+        "score": 72.1,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.656132",
+        "reasons": {
+            "raw_score": 76.92,
+            "final_score": 72.1,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 10,
+                    "max_score": 25,
+                    "ratio": 1.37,
+                    "reason": [
+                        "Volume Improving"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 12.53,
+                "volatility": 2.51,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "خفناور",
+        "score": 72.09,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.674534",
+        "reasons": {
+            "raw_score": 76.92,
+            "final_score": 72.09,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 10,
+                    "max_score": 25,
+                    "ratio": 1.41,
+                    "reason": [
+                        "Volume Improving"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 12.57,
+                "volatility": 2.51,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
         "symbol": "فزرین",
         "score": 72.06,
         "signal": "BUY",
@@ -4584,6 +7333,57 @@
         }
     },
     {
+        "symbol": "ثعمرا",
+        "score": 71.98,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.687616",
+        "reasons": {
+            "raw_score": 76.92,
+            "final_score": 71.98,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 10,
+                    "max_score": 25,
+                    "ratio": 1.37,
+                    "reason": [
+                        "Volume Improving"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 12.85,
+                "volatility": 2.57,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
         "symbol": "فخاس",
         "score": 71.94,
         "signal": "BUY",
@@ -4620,6 +7420,56 @@
             "risk": {
                 "risk": 12.96,
                 "volatility": 2.59,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "وهنر",
+        "score": 71.92,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.700895",
+        "reasons": {
+            "raw_score": 76.92,
+            "final_score": 71.92,
+            "engines": {
+                "trend": {
+                    "score": 10,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 20,
+                    "max_score": 25,
+                    "ratio": 2.13,
+                    "reason": [
+                        "Strong Volume Increase"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 13.01,
+                "volatility": 2.6,
                 "reason": "Low volatility"
             },
             "confidence": {
@@ -4737,6 +7587,57 @@
         }
     },
     {
+        "symbol": "شرنگی",
+        "score": 71.87,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.720567",
+        "reasons": {
+            "raw_score": 76.92,
+            "final_score": 71.87,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 10,
+                    "max_score": 25,
+                    "ratio": 1.3,
+                    "reason": [
+                        "Volume Improving"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 13.14,
+                "volatility": 2.63,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
         "symbol": "کرومیت",
         "score": 71.84,
         "signal": "BUY",
@@ -4773,6 +7674,57 @@
             "risk": {
                 "risk": 13.21,
                 "volatility": 2.64,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "وتجارت",
+        "score": 71.83,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.744225",
+        "reasons": {
+            "raw_score": 76.92,
+            "final_score": 71.83,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 10,
+                    "max_score": 25,
+                    "ratio": 1.27,
+                    "reason": [
+                        "Volume Improving"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 13.25,
+                "volatility": 2.65,
                 "reason": "Low volatility"
             },
             "confidence": {
@@ -4992,6 +7944,108 @@
         }
     },
     {
+        "symbol": "وآرین",
+        "score": 71.68,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.763365",
+        "reasons": {
+            "raw_score": 76.92,
+            "final_score": 71.68,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 10,
+                    "max_score": 25,
+                    "ratio": 1.21,
+                    "reason": [
+                        "Volume Improving"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 13.64,
+                "volatility": 2.73,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "آسیا",
+        "score": 71.47,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.784256",
+        "reasons": {
+            "raw_score": 76.92,
+            "final_score": 71.47,
+            "engines": {
+                "trend": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA",
+                        "EMA > SMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 10,
+                    "max_score": 25,
+                    "ratio": 1.48,
+                    "reason": [
+                        "Volume Improving"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 14.19,
+                "volatility": 2.84,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
         "symbol": "اسیاتک",
         "score": 71.38,
         "signal": "BUY",
@@ -5079,6 +8133,56 @@
             "risk": {
                 "risk": 14.61,
                 "volatility": 2.92,
+                "reason": "Low volatility"
+            },
+            "confidence": {
+                "confidence": 100.0,
+                "engines": 3,
+                "total": 3,
+                "reasons": [
+                    "trend: OK",
+                    "momentum: OK",
+                    "volume: OK"
+                ]
+            }
+        }
+    },
+    {
+        "symbol": "گکیش",
+        "score": 70.92,
+        "signal": "BUY",
+        "status": "WATCH",
+        "added_date": "2026-08-04 12:08:50.798922",
+        "reasons": {
+            "raw_score": 76.92,
+            "final_score": 70.92,
+            "engines": {
+                "trend": {
+                    "score": 10,
+                    "max_score": 20,
+                    "reason": [
+                        "Close > EMA"
+                    ]
+                },
+                "momentum": {
+                    "score": 20,
+                    "max_score": 20,
+                    "reason": [
+                        "Healthy RSI"
+                    ]
+                },
+                "volume": {
+                    "score": 20,
+                    "max_score": 25,
+                    "ratio": 2.44,
+                    "reason": [
+                        "Strong Volume Increase"
+                    ]
+                }
+            },
+            "risk": {
+                "risk": 15.6,
+                "volatility": 3.12,
                 "reason": "Low volatility"
             },
             "confidence": {
