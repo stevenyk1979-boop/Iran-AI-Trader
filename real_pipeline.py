@@ -1,164 +1,300 @@
 """
 Iran AI Trader Professional
 Real Pipeline
-Sprint32-E
+Sprint36
 """
 
+
 from scanner import Scanner
+
 from entry_validator import EntryValidator
+
 from trade_candidate import TradeCandidateEngine
+
 from trade_decision import TradeDecisionEngine
 
 from market_regime import MarketRegimeEngine
+
 from regime_report import RegimeReport
 
-from smart_capital_engine import SmartCapitalEngine
+
+# Sprint35 Intelligence
+
+from pipeline_intelligence import PipelineIntelligence
+
+from pipeline_intelligence_report import PipelineIntelligenceReport
+
+
 
 
 class RealPipeline:
 
+
     def __init__(self):
+
 
         self.scanner = Scanner()
 
+
         self.validator = EntryValidator()
+
 
         self.candidate_engine = TradeCandidateEngine()
 
+
         self.decision_engine = TradeDecisionEngine()
+
+
+
+        # Market Regime
 
         self.regime_engine = MarketRegimeEngine()
 
         self.regime_report = RegimeReport()
 
-        self.smart_capital = SmartCapitalEngine()
+
+
+        # Sprint36
+
+        self.pipeline_intelligence = PipelineIntelligence()
+
+        self.intelligence_report = PipelineIntelligenceReport()
+
+
+
 
     # -------------------------------------------------
 
     def run(self):
 
-        print()
-        print("=" * 60)
-        print("REAL PIPELINE")
-        print("=" * 60)
 
-        # -----------------------------------------
-        # STEP 1
-        # Scanner
-        # -----------------------------------------
+        print()
+
+        print("=" * 70)
+
+        print(
+
+            "REAL PIPELINE SPRINT36"
+
+        )
+
+        print("=" * 70)
+
+
+
+
+        # ---------------------------------------------
+        # Step 1
+        # Market Scan
+        # ---------------------------------------------
+
 
         ranking = self.scanner.scan()
 
-        # -----------------------------------------
-        # STEP 2
+
+
+
+        # ---------------------------------------------
+        # Step 2
         # Market Regime
-        # -----------------------------------------
+        # ---------------------------------------------
+
 
         regime = self.regime_engine.calculate(
+
             ranking
+
         )
+
 
         self.regime_report.show(
+
             regime
+
         )
 
-        # -----------------------------------------
-        # STEP 3
-        # Watch List
-        # -----------------------------------------
+
+
+
+        # ---------------------------------------------
+        # Step 3
+        # WatchList
+        # ---------------------------------------------
+
 
         watchlist = self.scanner.watchlist.all()
 
+
+
         print()
+
         print(
+
             "WatchList Loaded:",
+
             len(watchlist)
+
         )
 
-        # -----------------------------------------
-        # STEP 4
-        # Candidate Engine
-        # -----------------------------------------
+
+
+
+        # ---------------------------------------------
+        # Step 4
+        # Candidate Generation
+        # ---------------------------------------------
+
 
         candidates = self.candidate_engine.generate(
+
             watchlist,
+
             self.validator
+
         )
 
-        # -----------------------------------------
-        # STEP 5
-        # Decision + Smart Capital
-        # -----------------------------------------
 
-        portfolio = []
+
+
+        # ---------------------------------------------
+        # Step 5
+        # Trade Decision Engine
+        # ---------------------------------------------
+
 
         decisions = []
 
+
+
         for candidate in candidates:
 
+
             decision = self.decision_engine.decide(
+
                 candidate
+
             )
 
-            capital = self.smart_capital.allocate(
-                candidate,
-                regime,
-                portfolio
-            )
-
-            decision["capital"] = capital
 
             decisions.append(
+
                 decision
+
             )
 
-            if capital.get(
-                "allowed",
-                False
-            ):
-                portfolio.append(
-                    candidate["symbol"]
-                )
 
-        # -----------------------------------------
-        # FINAL REPORT
-        # -----------------------------------------
+
+
+        # ---------------------------------------------
+        # Step 6
+        # Sprint36 AI Intelligence Layer
+        # ---------------------------------------------
+
+
+        intelligence_results = self.pipeline_intelligence.analyze_all(
+
+            candidates
+
+        )
+
+
+
+
+        approved = self.pipeline_intelligence.approved_only(
+
+            intelligence_results
+
+        )
+
+
+
+
+        # ---------------------------------------------
+        # Final Intelligence Report
+        # ---------------------------------------------
+
+
+        self.intelligence_report.show(
+
+            intelligence_results
+
+        )
+
+
+
 
         print()
-        print("=" * 60)
-        print("PIPELINE FINISHED")
-        print("=" * 60)
+
+        print("=" * 70)
 
         print(
+
+            "PIPELINE FINISHED"
+
+        )
+
+        print("=" * 70)
+
+
+
+        print(
+
             "Candidates:",
+
             len(candidates)
+
         )
 
+
         print(
+
             "Decisions:",
+
             len(decisions)
+
         )
 
+
         print(
-            "Market Regime:",
-            regime["regime"]
+
+            "AI Approved:",
+
+            len(approved)
+
         )
+
+
+
 
         return {
 
+
             "regime": regime,
+
 
             "candidates": candidates,
 
-            "decisions": decisions
+
+            "decisions": decisions,
+
+
+            "intelligence": intelligence_results,
+
+
+            "approved": approved
 
         }
 
 
+
+
 # -------------------------------------------------
+
 
 if __name__ == "__main__":
 
+
     pipeline = RealPipeline()
 
-    pipeline.run()
+
+    result = pipeline.run()
