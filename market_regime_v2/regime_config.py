@@ -1,0 +1,32 @@
+"""
+Iran AI Trader Professional
+Market Regime V2 Config
+Sprint36.5
+"""
+
+
+# Engine Weights
+
+TREND_WEIGHT = 30
+
+BREADTH_WEIGHT = 25
+
+LIQUIDITY_WEIGHT = 20
+
+VOLATILITY_WEIGHT = 10
+
+MACRO_WEIGHT = 15
+
+
+
+# Regime Thresholds
+
+STRONG_BULL_THRESHOLD = 85
+
+BULL_THRESHOLD = 70
+
+EARLY_BULL_THRESHOLD = 60
+
+SIDEWAYS_THRESHOLD = 45
+
+BEAR_THRESHOLD = 30
