@@ -3,16 +3,28 @@ Iran AI Trader Professional
 
 Scanner V2
 
-Sprint44-06
+Sprint44-10
 
-Market Loader
+Market Loader Adapter Connected
 """
+
+
+from scanner_v2.market_adapter import MarketAdapter
+
 
 
 class MarketLoader:
 
 
-    def __init__(self):
+    def __init__(
+        self,
+        adapter=None
+    ):
+
+
+        self.adapter = adapter or MarketAdapter()
+
+
 
         self.symbols = [
 
@@ -28,50 +40,79 @@ class MarketLoader:
 
 
 
-    def load_symbols(self, data=None):
+
+    def load_symbols(
+        self,
+        data=None
+    ):
 
 
-        if data is None:
-
-            data = self.symbols
+        try:
 
 
-
-        result = []
-
+            if data is None:
 
 
-        for item in data:
-
-
-            if item is None:
-
-                continue
+                adapter_symbols = self.adapter.get_symbols()
 
 
 
-            if "symbol" not in item:
+                if adapter_symbols:
 
-                continue
-
-
-
-            result.append(
-
-                item["symbol"]
-
-            )
+                    return adapter_symbols
 
 
 
-        self.symbols = result
+                data = self.symbols
 
 
-        return result
+
+            result = []
+
+
+
+            for item in data:
+
+
+                if item is None:
+
+                    continue
+
+
+
+                if "symbol" not in item:
+
+                    continue
+
+
+
+                result.append(
+
+                    item["symbol"]
+
+                )
+
+
+
+            self.symbols = result
+
+
+
+            return result
+
+
+
+        except Exception:
+
+
+            return []
+
+
 
 
 
     def count(self):
+
 
         return len(
 
