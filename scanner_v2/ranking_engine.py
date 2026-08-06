@@ -3,10 +3,14 @@ Iran AI Trader Professional
 
 Scanner V2
 
-Sprint44-04
+Sprint44-08
 
-Ranking Engine
+Ranking Engine Config Connected
 """
+
+
+from scanner_v2.config import ScannerConfig
+
 
 
 class RankingEngine:
@@ -14,11 +18,17 @@ class RankingEngine:
 
     def __init__(self):
 
+        self.config = ScannerConfig()
+
         self.results = []
 
 
 
-    def analyze(self, history, symbol):
+    def analyze(
+        self,
+        history,
+        symbol
+    ):
 
 
         try:
@@ -41,11 +51,12 @@ class RankingEngine:
                 )
 
 
-            if len(prices) < 20:
+            if len(prices) < self.config.get_minimum_candles():
 
                 raise Exception(
                     "Not enough candles"
                 )
+
 
 
             score = self.calculate_score(
@@ -53,6 +64,7 @@ class RankingEngine:
                 prices
 
             )
+
 
 
             result = {
@@ -66,7 +78,13 @@ class RankingEngine:
             }
 
 
-            self.results.append(result)
+
+            self.results.append(
+
+                result
+
+            )
+
 
 
             return result
@@ -90,12 +108,23 @@ class RankingEngine:
 
 
 
-    def calculate_score(self, prices):
+
+    def calculate_score(
+        self,
+        prices
+    ):
 
 
         start = prices[0]
 
         end = prices[-1]
+
+
+
+        if start <= 0:
+
+            return 0
+
 
 
         change = (
@@ -136,7 +165,15 @@ class RankingEngine:
 
 
 
-    def decision(self, score):
+
+    def decision(
+        self,
+        score
+    ):
+
+
+        minimum_score = self.config.get_minimum_score()
+
 
 
         if score >= 80:
@@ -145,7 +182,7 @@ class RankingEngine:
 
 
 
-        if score >= 60:
+        if score >= minimum_score:
 
             return "WATCH"
 
