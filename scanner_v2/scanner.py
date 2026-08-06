@@ -3,9 +3,9 @@ Iran AI Trader Professional
 
 Scanner V2
 
-Sprint44-07
+Sprint44-09
 
-Scanner Core
+Scanner Core Config Ready
 """
 
 
