@@ -20,6 +20,12 @@ class HistoryLoader:
 
 
 
+    def load(self, symbol):
+
+        return self.load_history(symbol)
+
+
+
     def load_history(self, symbol):
 
         try:
@@ -111,5 +117,7 @@ class HistoryLoader:
     def failed_count(self):
 
         return len(
+
             self.failed_history
+
         )

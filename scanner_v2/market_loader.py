@@ -3,7 +3,7 @@ Iran AI Trader Professional
 
 Scanner V2
 
-Sprint44
+Sprint44-06
 
 Market Loader
 """
@@ -14,7 +14,17 @@ class MarketLoader:
 
     def __init__(self):
 
-        self.symbols = []
+        self.symbols = [
+
+            {
+                "symbol": "TEST1"
+            },
+
+            {
+                "symbol": "TEST2"
+            }
+
+        ]
 
 
 
@@ -23,11 +33,12 @@ class MarketLoader:
 
         if data is None:
 
-            return []
+            data = self.symbols
 
 
 
         result = []
+
 
 
         for item in data:
@@ -38,12 +49,18 @@ class MarketLoader:
                 continue
 
 
+
             if "symbol" not in item:
 
                 continue
 
 
-            result.append(item)
+
+            result.append(
+
+                item["symbol"]
+
+            )
 
 
 
@@ -57,5 +74,7 @@ class MarketLoader:
     def count(self):
 
         return len(
+
             self.symbols
+
         )
