@@ -3,16 +3,22 @@ Iran AI Trader Professional
 
 Scanner V2
 
-Sprint44-05
+Sprint44-08
 
-Validator Engine
+Validator Engine Config Connected
 """
+
+
+from scanner_v2.config import ScannerConfig
+
 
 
 class Validator:
 
 
     def __init__(self):
+
+        self.config = ScannerConfig()
 
         self.rejected = []
 
@@ -45,7 +51,7 @@ class Validator:
                 )
 
 
-            if len(prices) < 20:
+            if len(prices) < self.config.get_minimum_candles():
 
                 raise Exception(
                     "Insufficient candles"
@@ -96,11 +102,9 @@ class Validator:
                 return False
 
 
-
             if score < 0:
 
                 return False
-
 
 
             if score > 100:
@@ -108,12 +112,12 @@ class Validator:
                 return False
 
 
-
             return True
 
 
 
         except Exception:
+
 
             return False
 
