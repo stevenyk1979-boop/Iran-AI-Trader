@@ -3,7 +3,7 @@ Iran AI Trader Professional
 
 Scanner V2
 
-Sprint44-06
+Sprint44-07
 
 Scanner Core
 """
@@ -13,6 +13,7 @@ from scanner_v2.market_loader import MarketLoader
 from scanner_v2.history_loader import HistoryLoader
 from scanner_v2.validator import Validator
 from scanner_v2.ranking_engine import RankingEngine
+from scanner_v2.config import ScannerConfig
 
 
 
@@ -20,6 +21,8 @@ class Scanner:
 
 
     def __init__(self):
+
+        self.config = ScannerConfig()
 
         self.market_loader = MarketLoader()
 
@@ -152,6 +155,7 @@ class Scanner:
                 result
 
             )
+
 
 
             if not self.validator.validate_score(
