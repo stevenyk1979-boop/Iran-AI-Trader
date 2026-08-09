@@ -21,13 +21,13 @@ class Scanner:
 
         self.config = ScannerConfig()
 
-        self.market_loader = MarketLoader()
+        self.market_loader = MarketLoader(config=self.config)
 
-        self.history_loader = HistoryLoader()
+        self.history_loader = HistoryLoader(config=self.config)
 
-        self.validator = Validator()
+        self.validator = Validator(config=self.config)
 
-        self.ranking_engine = RankingEngine()
+        self.ranking_engine = RankingEngine(config=self.config)
 
         self.results = []
 

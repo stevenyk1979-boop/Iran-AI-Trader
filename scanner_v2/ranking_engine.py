@@ -1,9 +1,10 @@
+
 """
 Iran AI Trader Professional
 
 Scanner V2
 
-Sprint44-17
+Sprint44-18
 
 Ranking Engine Shared Config
 """
@@ -155,3 +156,4 @@ class RankingEngine:
 
 
         return "IGNORE"
+

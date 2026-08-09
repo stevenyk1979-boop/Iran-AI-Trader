@@ -1,22 +1,31 @@
+
 """
 Iran AI Trader Professional
 
 Scanner V2
 
-Sprint44-12
+Sprint44-18
 
-Market Loader
+Market Loader Shared Config
 """
 
-
 from scanner_v2.market_adapter import MarketAdapter
+from scanner_v2.config import ScannerConfig
 
 
 class MarketLoader:
 
-    def __init__(self, adapter=None):
+    def __init__(
+        self,
+        adapter=None,
+        config=None
+    ):
 
-        self.adapter = adapter or MarketAdapter()
+        self.config = config or ScannerConfig()
+
+        self.adapter = adapter or MarketAdapter(
+            config=self.config
+        )
 
         self.symbols = []
 
@@ -42,7 +51,9 @@ class MarketLoader:
 
                 if isinstance(item, dict):
 
-                    symbol = item.get("symbol")
+                    symbol = item.get(
+                        "symbol"
+                    )
 
                 else:
 
@@ -54,7 +65,9 @@ class MarketLoader:
                     continue
 
 
-                result.append(symbol)
+                result.append(
+                    symbol
+                )
 
 
             self.symbols = result
@@ -72,7 +85,6 @@ class MarketLoader:
     def count(self):
 
         return len(
-
             self.symbols
-
         )
+

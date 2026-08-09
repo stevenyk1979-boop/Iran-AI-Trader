@@ -1,11 +1,12 @@
+
 """
 Iran AI Trader Professional
 
 Scanner V2
 
-Sprint44-17
+Sprint44-18
 
-Validator Shared Config
+Validator Engine Shared Config
 """
 
 from scanner_v2.config import ScannerConfig
@@ -112,3 +113,4 @@ class Validator:
         return len(
             self.rejected
         )
+
