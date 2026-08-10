@@ -3,21 +3,23 @@ Iran AI Trader Professional
 
 Scanner V2
 
-Sprint44-03
+Sprint44-14
 
-History Loader
+History Loader Adapter Connected
 """
+
+
+from scanner_v2.history_adapter import HistoryAdapter
 
 
 class HistoryLoader:
 
 
-    def __init__(self, market_service=None):
+    def __init__(self, adapter=None):
 
-        self.market_service = market_service
+        self.adapter = adapter or HistoryAdapter()
 
         self.failed_history = []
-
 
 
     def load(self, symbol):
@@ -25,19 +27,11 @@ class HistoryLoader:
         return self.load_history(symbol)
 
 
-
     def load_history(self, symbol):
 
         try:
 
-            if self.market_service is None:
-
-                raise Exception(
-                    "Market service not configured"
-                )
-
-
-            history = self.market_service.history(
+            history = self.adapter.get_history(
 
                 symbol
 
@@ -47,16 +41,16 @@ class HistoryLoader:
             if history is None:
 
                 raise Exception(
+
                     "No history returned"
+
                 )
 
 
             return history
 
 
-
         except Exception as error:
-
 
             self.failed_history.append({
 
@@ -70,25 +64,20 @@ class HistoryLoader:
             return None
 
 
-
     def validate_history(
         self,
         history,
         minimum_candles=20
     ):
 
-
         try:
-
 
             if history is None:
 
                 return False
 
 
-
             prices = history.close_prices()
-
 
 
             if prices is None:
@@ -96,22 +85,17 @@ class HistoryLoader:
                 return False
 
 
-
             if len(prices) < minimum_candles:
 
                 return False
 
 
-
             return True
-
 
 
         except Exception:
 
-
             return False
-
 
 
     def failed_count(self):
