@@ -3,21 +3,28 @@ Iran AI Trader Professional
 
 Scanner V2
 
-Sprint44-14
+Sprint44-17
 
-History Loader Adapter Connected
+History Loader Shared Config
 """
 
-
 from scanner_v2.history_adapter import HistoryAdapter
+from scanner_v2.config import ScannerConfig
 
 
 class HistoryLoader:
 
+    def __init__(
+        self,
+        adapter=None,
+        config=None
+    ):
 
-    def __init__(self, adapter=None):
+        self.config = config or ScannerConfig()
 
-        self.adapter = adapter or HistoryAdapter()
+        self.adapter = adapter or HistoryAdapter(
+            config=self.config
+        )
 
         self.failed_history = []
 
@@ -32,20 +39,14 @@ class HistoryLoader:
         try:
 
             history = self.adapter.get_history(
-
                 symbol
-
             )
-
 
             if history is None:
 
                 raise Exception(
-
                     "No history returned"
-
                 )
-
 
             return history
 
@@ -60,14 +61,13 @@ class HistoryLoader:
 
             })
 
-
             return None
 
 
     def validate_history(
         self,
         history,
-        minimum_candles=20
+        minimum_candles=None
     ):
 
         try:
@@ -76,19 +76,21 @@ class HistoryLoader:
 
                 return False
 
-
             prices = history.close_prices()
-
 
             if prices is None:
 
                 return False
 
+            if minimum_candles is None:
+
+                minimum_candles = (
+                    self.config.get_minimum_candles()
+                )
 
             if len(prices) < minimum_candles:
 
                 return False
-
 
             return True
 
@@ -101,7 +103,6 @@ class HistoryLoader:
     def failed_count(self):
 
         return len(
-
             self.failed_history
-
         )
+

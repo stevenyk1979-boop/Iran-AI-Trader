@@ -3,25 +3,21 @@ Iran AI Trader Professional
 
 Scanner V2
 
-Sprint44-08
+Sprint44-17
 
-Validator Engine Config Connected
+Validator Shared Config
 """
-
 
 from scanner_v2.config import ScannerConfig
 
 
-
 class Validator:
 
+    def __init__(self, config=None):
 
-    def __init__(self):
-
-        self.config = ScannerConfig()
+        self.config = config or ScannerConfig()
 
         self.rejected = []
-
 
 
     def validate_history(
@@ -30,9 +26,7 @@ class Validator:
         symbol
     ):
 
-
         try:
-
 
             if history is None:
 
@@ -70,9 +64,7 @@ class Validator:
             return True
 
 
-
         except Exception as error:
-
 
             self.rejected.append({
 
@@ -82,10 +74,7 @@ class Validator:
 
             })
 
-
             return False
-
-
 
 
     def validate_score(
@@ -93,9 +82,7 @@ class Validator:
         score
     ):
 
-
         try:
-
 
             if score is None:
 
@@ -115,13 +102,9 @@ class Validator:
             return True
 
 
-
         except Exception:
 
-
             return False
-
-
 
 
     def rejected_count(self):

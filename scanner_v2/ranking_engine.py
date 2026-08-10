@@ -3,25 +3,21 @@ Iran AI Trader Professional
 
 Scanner V2
 
-Sprint44-08
+Sprint44-17
 
-Ranking Engine Config Connected
+Ranking Engine Shared Config
 """
-
 
 from scanner_v2.config import ScannerConfig
 
 
-
 class RankingEngine:
 
+    def __init__(self, config=None):
 
-    def __init__(self):
-
-        self.config = ScannerConfig()
+        self.config = config or ScannerConfig()
 
         self.results = []
-
 
 
     def analyze(
@@ -30,9 +26,7 @@ class RankingEngine:
         symbol
     ):
 
-
         try:
-
 
             if history is None:
 
@@ -58,13 +52,9 @@ class RankingEngine:
                 )
 
 
-
             score = self.calculate_score(
-
                 prices
-
             )
-
 
 
             result = {
@@ -78,21 +68,15 @@ class RankingEngine:
             }
 
 
-
             self.results.append(
-
                 result
-
             )
-
 
 
             return result
 
 
-
         except Exception as error:
-
 
             return {
 
@@ -107,24 +91,19 @@ class RankingEngine:
             }
 
 
-
-
     def calculate_score(
         self,
         prices
     ):
-
 
         start = prices[0]
 
         end = prices[-1]
 
 
-
         if start <= 0:
 
             return 0
-
 
 
         change = (
@@ -138,9 +117,7 @@ class RankingEngine:
         ) * 100
 
 
-
         score = 50 + change
-
 
 
         if score > 100:
@@ -148,22 +125,15 @@ class RankingEngine:
             score = 100
 
 
-
         if score < 0:
 
             score = 0
 
 
-
         return round(
-
             score,
-
             2
-
         )
-
-
 
 
     def decision(
@@ -171,9 +141,7 @@ class RankingEngine:
         score
     ):
 
-
         minimum_score = self.config.get_minimum_score()
-
 
 
         if score >= 80:
@@ -181,11 +149,9 @@ class RankingEngine:
             return "STRONG WATCH"
 
 
-
         if score >= minimum_score:
 
             return "WATCH"
-
 
 
         return "IGNORE"
