@@ -4,7 +4,7 @@ Iran AI Trader Professional
 
 Scanner V2
 
-Sprint44-28
+Sprint44-29
 
 Scanner Configuration
 """
@@ -61,24 +61,45 @@ class ScannerConfig:
 
     def validate_ranking_weights(self):
 
+        errors = []
+
+
         if self.price_weight < 0:
 
-            return False
+            errors.append(
+                "price_weight must be >= 0"
+            )
 
 
         if self.trend_weight < 0:
 
-            return False
+            errors.append(
+                "trend_weight must be >= 0"
+            )
 
 
-        if (
+        weight_sum = (
+
             self.price_weight
             +
             self.trend_weight
-        ) <= 0:
 
-            return False
+        )
 
 
-        return True
+        if weight_sum <= 0:
+
+            errors.append(
+                "ranking weight sum must be > 0"
+            )
+
+
+        return errors
+
+
+    def ranking_weights_valid(self):
+
+        return len(
+            self.validate_ranking_weights()
+        ) == 0
 

@@ -4,9 +4,9 @@ Iran AI Trader Professional
 
 Scanner V2
 
-Sprint44-28
+Sprint44-29
 
-Ranking Engine - Ranking Weight Validation
+Ranking Engine - Detailed Ranking Weight Validation
 """
 
 from scanner_v2.config import ScannerConfig
@@ -55,12 +55,18 @@ class RankingEngine:
 
         try:
 
-            if not self.config.validate_ranking_weights():
+            # Validate ranking weights
+
+            errors = self.config.validate_ranking_weights()
+
+            if errors:
 
                 raise Exception(
-                    "Invalid ranking weights"
+                    "; ".join(errors)
                 )
 
+
+            # Validate history
 
             if history is None:
 
@@ -79,6 +85,8 @@ class RankingEngine:
                 )
 
 
+            # Validate minimum candles
+
             if len(prices) < self.config.get_minimum_candles():
 
                 raise Exception(
@@ -86,25 +94,35 @@ class RankingEngine:
                 )
 
 
+            # Price score
+
             price_score = self.price_engine.calculate(
                 prices
             )
 
+
+            # Direction score
 
             direction_score = self.direction_engine.calculate(
                 prices
             )
 
 
+            # Strength score
+
             strength_score = self.strength_engine.calculate(
                 prices
             )
 
 
+            # Consistency score
+
             consistency_score = self.consistency_engine.calculate(
                 prices
             )
 
+
+            # Trend score
 
             trend_score = self.trend_engine.calculate(
                 direction_score,
@@ -112,6 +130,8 @@ class RankingEngine:
                 consistency_score
             )
 
+
+            # Ranking weights
 
             price_weight = self.config.get_price_weight()
 
@@ -124,6 +144,15 @@ class RankingEngine:
                 trend_weight
             )
 
+
+            if weight_sum <= 0:
+
+                raise Exception(
+                    "ranking weight sum must be > 0"
+                )
+
+
+            # Final score
 
             score = (
 
@@ -149,6 +178,8 @@ class RankingEngine:
                 2
             )
 
+
+            # Final result
 
             result = {
 
