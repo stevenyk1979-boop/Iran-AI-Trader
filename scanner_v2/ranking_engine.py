@@ -4,9 +4,9 @@ Iran AI Trader Professional
 
 Scanner V2
 
-Sprint44-27
+Sprint44-28
 
-Ranking Engine - Configurable Ranking Weights
+Ranking Engine - Ranking Weight Validation
 """
 
 from scanner_v2.config import ScannerConfig
@@ -54,6 +54,13 @@ class RankingEngine:
     ):
 
         try:
+
+            if not self.config.validate_ranking_weights():
+
+                raise Exception(
+                    "Invalid ranking weights"
+                )
+
 
             if history is None:
 
@@ -116,13 +123,6 @@ class RankingEngine:
                 +
                 trend_weight
             )
-
-
-            if weight_sum <= 0:
-
-                raise Exception(
-                    "Invalid ranking weights"
-                )
 
 
             score = (
