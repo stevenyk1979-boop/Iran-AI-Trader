@@ -4,9 +4,9 @@ Iran AI Trader Professional
 
 Scanner V2
 
-Sprint44-30
+Sprint44-31
 
-Ranking Engine - Weight Contribution Analysis
+Ranking Engine - Ranking Breakdown
 """
 
 from scanner_v2.config import ScannerConfig
@@ -196,6 +196,47 @@ class RankingEngine:
 
 
             # -------------------------------------------------
+            # Ranking breakdown
+            # -------------------------------------------------
+
+            ranking_breakdown = {
+
+                "price": {
+
+                    "score": round(
+                        price_score,
+                        2
+                    ),
+
+                    "weight": price_weight,
+
+                    "contribution": round(
+                        price_contribution,
+                        2
+                    )
+
+                },
+
+                "trend": {
+
+                    "score": round(
+                        trend_score,
+                        2
+                    ),
+
+                    "weight": trend_weight,
+
+                    "contribution": round(
+                        trend_contribution,
+                        2
+                    )
+
+                }
+
+            }
+
+
+            # -------------------------------------------------
             # Final result
             # -------------------------------------------------
 
@@ -228,6 +269,8 @@ class RankingEngine:
                     trend_contribution,
                     2
                 ),
+
+                "ranking_breakdown": ranking_breakdown,
 
                 "decision": self.decision(
                     score
