@@ -4,12 +4,14 @@ Iran AI Trader Professional
 
 Scanner V2
 
-Sprint44-31
+Sprint44-32
 
-Ranking Engine - Ranking Breakdown
+Ranking Engine - Ranking Breakdown Integration
 """
 
 from scanner_v2.config import ScannerConfig
+
+from scanner_v2.ranking_breakdown import RankingBreakdown
 
 from scanner_v2.scoring.price_score import PriceScoreEngine
 from scanner_v2.scoring.direction_score import DirectionScoreEngine
@@ -140,100 +142,57 @@ class RankingEngine:
             trend_weight = self.config.get_trend_weight()
 
 
-            weight_sum = (
-                price_weight
-                +
-                trend_weight
+            # -------------------------------------------------
+            # Create Ranking Breakdown
+            # -------------------------------------------------
+
+            breakdown = RankingBreakdown(
+
+                price_score=price_score,
+
+                trend_score=trend_score,
+
+                price_weight=price_weight,
+
+                trend_weight=trend_weight
+
             )
 
 
-            if weight_sum <= 0:
+            # -------------------------------------------------
+            # Calculate final score
+            # -------------------------------------------------
 
-                raise Exception(
-                    "ranking weight sum must be > 0"
-                )
+            score = breakdown.final_score()
 
 
             # -------------------------------------------------
-            # Weight contributions
+            # Get breakdown dictionary
+            # -------------------------------------------------
+
+            ranking_breakdown = breakdown.to_dict()
+
+
+            # -------------------------------------------------
+            # Extract contributions
             # -------------------------------------------------
 
             price_contribution = (
-
-                price_score
-                *
-                price_weight
-
+                ranking_breakdown[
+                    "price"
+                ][
+                    "contribution"
+                ]
             )
 
 
             trend_contribution = (
-
-                trend_score
-                *
-                trend_weight
-
+                ranking_breakdown[
+                    "trend"
+                ][
+                    "contribution"
+                ]
             )
-
-
-            # -------------------------------------------------
-            # Final score
-            # -------------------------------------------------
-
-            score = (
-
-                price_contribution
-                +
-                trend_contribution
-
-            ) / weight_sum
-
-
-            score = round(
-                score,
-                2
-            )
-
-
-            # -------------------------------------------------
-            # Ranking breakdown
-            # -------------------------------------------------
-
-            ranking_breakdown = {
-
-                "price": {
-
-                    "score": round(
-                        price_score,
-                        2
-                    ),
-
-                    "weight": price_weight,
-
-                    "contribution": round(
-                        price_contribution,
-                        2
-                    )
-
-                },
-
-                "trend": {
-
-                    "score": round(
-                        trend_score,
-                        2
-                    ),
-
-                    "weight": trend_weight,
-
-                    "contribution": round(
-                        trend_contribution,
-                        2
-                    )
-
-                }
-
-            }
 
 
             # -------------------------------------------------
@@ -260,15 +219,9 @@ class RankingEngine:
 
                 "trend_weight": trend_weight,
 
-                "price_contribution": round(
-                    price_contribution,
-                    2
-                ),
+                "price_contribution": price_contribution,
 
-                "trend_contribution": round(
-                    trend_contribution,
-                    2
-                ),
+                "trend_contribution": trend_contribution,
 
                 "ranking_breakdown": ranking_breakdown,
 
