@@ -4,9 +4,9 @@ Iran AI Trader Professional
 
 Scanner V2
 
-Sprint44-29
+Sprint44-30
 
-Ranking Engine - Detailed Ranking Weight Validation
+Ranking Engine - Weight Contribution Analysis
 """
 
 from scanner_v2.config import ScannerConfig
@@ -55,7 +55,9 @@ class RankingEngine:
 
         try:
 
+            # -------------------------------------------------
             # Validate ranking weights
+            # -------------------------------------------------
 
             errors = self.config.validate_ranking_weights()
 
@@ -66,7 +68,9 @@ class RankingEngine:
                 )
 
 
+            # -------------------------------------------------
             # Validate history
+            # -------------------------------------------------
 
             if history is None:
 
@@ -85,7 +89,9 @@ class RankingEngine:
                 )
 
 
+            # -------------------------------------------------
             # Validate minimum candles
+            # -------------------------------------------------
 
             if len(prices) < self.config.get_minimum_candles():
 
@@ -94,35 +100,29 @@ class RankingEngine:
                 )
 
 
-            # Price score
+            # -------------------------------------------------
+            # Calculate component scores
+            # -------------------------------------------------
 
             price_score = self.price_engine.calculate(
                 prices
             )
 
 
-            # Direction score
-
             direction_score = self.direction_engine.calculate(
                 prices
             )
 
-
-            # Strength score
 
             strength_score = self.strength_engine.calculate(
                 prices
             )
 
 
-            # Consistency score
-
             consistency_score = self.consistency_engine.calculate(
                 prices
             )
 
-
-            # Trend score
 
             trend_score = self.trend_engine.calculate(
                 direction_score,
@@ -131,7 +131,9 @@ class RankingEngine:
             )
 
 
+            # -------------------------------------------------
             # Ranking weights
+            # -------------------------------------------------
 
             price_weight = self.config.get_price_weight()
 
@@ -152,23 +154,37 @@ class RankingEngine:
                 )
 
 
+            # -------------------------------------------------
+            # Weight contributions
+            # -------------------------------------------------
+
+            price_contribution = (
+
+                price_score
+                *
+                price_weight
+
+            )
+
+
+            trend_contribution = (
+
+                trend_score
+                *
+                trend_weight
+
+            )
+
+
+            # -------------------------------------------------
             # Final score
+            # -------------------------------------------------
 
             score = (
 
-                (
-                    price_score
-                    *
-                    price_weight
-                )
-
+                price_contribution
                 +
-
-                (
-                    trend_score
-                    *
-                    trend_weight
-                )
+                trend_contribution
 
             ) / weight_sum
 
@@ -179,7 +195,9 @@ class RankingEngine:
             )
 
 
+            # -------------------------------------------------
             # Final result
+            # -------------------------------------------------
 
             result = {
 
@@ -200,6 +218,16 @@ class RankingEngine:
                 "price_weight": price_weight,
 
                 "trend_weight": trend_weight,
+
+                "price_contribution": round(
+                    price_contribution,
+                    2
+                ),
+
+                "trend_contribution": round(
+                    trend_contribution,
+                    2
+                ),
 
                 "decision": self.decision(
                     score
