@@ -4,12 +4,18 @@ Iran AI Trader Professional
 
 Scanner V2
 
-Sprint44-18
+Sprint44-26
 
-Ranking Engine Shared Config
+Ranking Engine - Full Shared Config Integration
 """
 
 from scanner_v2.config import ScannerConfig
+
+from scanner_v2.scoring.price_score import PriceScoreEngine
+from scanner_v2.scoring.direction_score import DirectionScoreEngine
+from scanner_v2.scoring.strength_score import StrengthScoreEngine
+from scanner_v2.scoring.consistency_score import ConsistencyScoreEngine
+from scanner_v2.scoring.trend_score import TrendScoreEngine
 
 
 class RankingEngine:
@@ -17,6 +23,26 @@ class RankingEngine:
     def __init__(self, config=None):
 
         self.config = config or ScannerConfig()
+
+        self.price_engine = PriceScoreEngine(
+            config=self.config
+        )
+
+        self.direction_engine = DirectionScoreEngine(
+            config=self.config
+        )
+
+        self.strength_engine = StrengthScoreEngine(
+            config=self.config
+        )
+
+        self.consistency_engine = ConsistencyScoreEngine(
+            config=self.config
+        )
+
+        self.trend_engine = TrendScoreEngine(
+            config=self.config
+        )
 
         self.results = []
 
@@ -53,8 +79,43 @@ class RankingEngine:
                 )
 
 
-            score = self.calculate_score(
+            price_score = self.price_engine.calculate(
                 prices
+            )
+
+
+            direction_score = self.direction_engine.calculate(
+                prices
+            )
+
+
+            strength_score = self.strength_engine.calculate(
+                prices
+            )
+
+
+            consistency_score = self.consistency_engine.calculate(
+                prices
+            )
+
+
+            trend_score = self.trend_engine.calculate(
+                direction_score,
+                strength_score,
+                consistency_score
+            )
+
+
+            score = round(
+
+                (price_score * 0.60)
+
+                +
+
+                (trend_score * 0.40),
+
+                2
+
             )
 
 
@@ -64,7 +125,19 @@ class RankingEngine:
 
                 "score": score,
 
-                "decision": self.decision(score)
+                "price_score": price_score,
+
+                "trend_score": trend_score,
+
+                "direction_score": direction_score,
+
+                "strength_score": strength_score,
+
+                "consistency_score": consistency_score,
+
+                "decision": self.decision(
+                    score
+                )
 
             }
 
@@ -90,51 +163,6 @@ class RankingEngine:
                 "error": str(error)
 
             }
-
-
-    def calculate_score(
-        self,
-        prices
-    ):
-
-        start = prices[0]
-
-        end = prices[-1]
-
-
-        if start <= 0:
-
-            return 0
-
-
-        change = (
-
-            (end - start)
-
-            /
-
-            start
-
-        ) * 100
-
-
-        score = 50 + change
-
-
-        if score > 100:
-
-            score = 100
-
-
-        if score < 0:
-
-            score = 0
-
-
-        return round(
-            score,
-            2
-        )
 
 
     def decision(
