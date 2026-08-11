@@ -4,9 +4,9 @@ Iran AI Trader Professional
 
 Scanner V2
 
-Sprint44-26
+Sprint44-27
 
-Ranking Engine - Full Shared Config Integration
+Ranking Engine - Configurable Ranking Weights
 """
 
 from scanner_v2.config import ScannerConfig
@@ -106,16 +106,47 @@ class RankingEngine:
             )
 
 
-            score = round(
+            price_weight = self.config.get_price_weight()
 
-                (price_score * 0.60)
+            trend_weight = self.config.get_trend_weight()
+
+
+            weight_sum = (
+                price_weight
+                +
+                trend_weight
+            )
+
+
+            if weight_sum <= 0:
+
+                raise Exception(
+                    "Invalid ranking weights"
+                )
+
+
+            score = (
+
+                (
+                    price_score
+                    *
+                    price_weight
+                )
 
                 +
 
-                (trend_score * 0.40),
+                (
+                    trend_score
+                    *
+                    trend_weight
+                )
 
+            ) / weight_sum
+
+
+            score = round(
+                score,
                 2
-
             )
 
 
@@ -134,6 +165,10 @@ class RankingEngine:
                 "strength_score": strength_score,
 
                 "consistency_score": consistency_score,
+
+                "price_weight": price_weight,
+
+                "trend_weight": trend_weight,
 
                 "decision": self.decision(
                     score
