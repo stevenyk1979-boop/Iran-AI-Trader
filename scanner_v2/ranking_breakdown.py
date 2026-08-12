@@ -1,12 +1,13 @@
+# `scanner_v2/ranking_breakdown.py`
 
 """
 Iran AI Trader Professional
 
 Scanner V2
 
-Sprint44-32
+Sprint44-33
 
-Ranking Breakdown
+Ranking Breakdown - Generic Engine Support
 """
 
 
@@ -14,51 +15,179 @@ class RankingBreakdown:
 
     def __init__(
         self,
-        price_score,
-        trend_score,
-        price_weight,
-        trend_weight
+        price_score=None,
+        trend_score=None,
+        price_weight=None,
+        trend_weight=None
     ):
 
-        self.price_score = price_score
+        self.components = {}
 
-        self.trend_score = trend_score
+        # -------------------------------------------------
+        # Backward compatibility with Price / Trend
+        # -------------------------------------------------
 
-        self.price_weight = price_weight
+        if (
+            price_score is not None
+            and price_weight is not None
+        ):
 
-        self.trend_weight = trend_weight
+            self.add(
+                name="price",
+                score=price_score,
+                weight=price_weight
+            )
 
+        if (
+            trend_score is not None
+            and trend_weight is not None
+        ):
+
+            self.add(
+                name="trend",
+                score=trend_score,
+                weight=trend_weight
+            )
+
+
+    # -----------------------------------------------------
+    # Add generic ranking component
+    # -----------------------------------------------------
+
+    def add(
+        self,
+        name,
+        score,
+        weight
+    ):
+
+        if not name:
+
+            raise ValueError(
+                "ranking component name is required"
+            )
+
+
+        if name in self.components:
+
+            raise ValueError(
+                f"duplicate ranking component: {name}"
+            )
+
+
+        if score is None:
+
+            raise ValueError(
+                "ranking component score is required"
+            )
+
+
+        if weight is None:
+
+            raise ValueError(
+                "ranking component weight is required"
+            )
+
+
+        if weight < 0:
+
+            raise ValueError(
+                "ranking component weight must be >= 0"
+            )
+
+
+        try:
+
+            numeric_score = float(
+                score
+            )
+
+        except (TypeError, ValueError):
+
+            raise ValueError(
+                "ranking component score must be numeric"
+            )
+
+
+        try:
+
+            numeric_weight = float(
+                weight
+            )
+
+        except (TypeError, ValueError):
+
+            raise ValueError(
+                "ranking component weight must be numeric"
+            )
+
+
+        if numeric_weight < 0:
+
+            raise ValueError(
+                "ranking component weight must be >= 0"
+            )
+
+
+        self.components[name] = {
+
+            "score": round(
+                numeric_score,
+                2
+            ),
+
+            "weight": numeric_weight
+
+        }
+
+
+    # -----------------------------------------------------
+    # Total ranking weight
+    # -----------------------------------------------------
 
     def weight_sum(self):
 
-        return (
-            self.price_weight
-            +
-            self.trend_weight
+        return sum(
+
+            component["weight"]
+
+            for component
+            in self.components.values()
+
         )
 
 
-    def price_contribution(self):
+    # -----------------------------------------------------
+    # Contribution of one component
+    # -----------------------------------------------------
+
+    def contribution(
+        self,
+        name
+    ):
+
+        if name not in self.components:
+
+            raise KeyError(
+                f"unknown ranking component: {name}"
+            )
+
+
+        component = self.components[name]
+
 
         return (
 
-            self.price_score
+            component["score"]
             *
-            self.price_weight
+            component["weight"]
 
         )
 
 
-    def trend_contribution(self):
-
-        return (
-
-            self.trend_score
-            *
-            self.trend_weight
-
-        )
-
+    # -----------------------------------------------------
+    # Final weighted score
+    # -----------------------------------------------------
 
     def final_score(self):
 
@@ -72,58 +201,63 @@ class RankingBreakdown:
             )
 
 
-        score = (
+        total_contribution = sum(
 
-            self.price_contribution()
-            +
-            self.trend_contribution()
+            self.contribution(
+                name
+            )
 
-        ) / total_weight
+            for name
+            in self.components
 
-
-        return round(
-            score,
-            2
         )
 
 
+        return round(
+
+            total_contribution
+            /
+            total_weight,
+
+            2
+
+        )
+
+
+    # -----------------------------------------------------
+    # Convert to dictionary
+    # -----------------------------------------------------
+
     def to_dict(self):
 
-        return {
+        result = {}
 
-            "price": {
 
-                "score": round(
-                    self.price_score,
-                    2
-                ),
+        for name, component in self.components.items():
 
-                "weight": self.price_weight,
+            result[name] = {
 
-                "contribution": round(
-                    self.price_contribution(),
-                    2
-                )
+                "score": component["score"],
 
-            },
-
-            "trend": {
-
-                "score": round(
-                    self.trend_score,
-                    2
-                ),
-
-                "weight": self.trend_weight,
+                "weight": component["weight"],
 
                 "contribution": round(
-                    self.trend_contribution(),
+
+                    self.contribution(
+                        name
+                    ),
+
                     2
+
                 )
 
-            },
+            }
 
-            "final_score": self.final_score()
 
-        }
+        result["final_score"] = (
+            self.final_score()
+        )
+
+
+        return result
 
