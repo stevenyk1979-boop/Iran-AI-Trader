@@ -1,13 +1,14 @@
 # `scanner_v2/ranking_breakdown.py`
 
+
 """
 Iran AI Trader Professional
 
 Scanner V2
 
-Sprint44-33
+Sprint44-35
 
-Ranking Breakdown - Generic Engine Support
+Ranking Breakdown - Generic Multi-Engine Support
 """
 
 
@@ -24,7 +25,7 @@ class RankingBreakdown:
         self.components = {}
 
         # -------------------------------------------------
-        # Backward compatibility with Price / Trend
+        # Backward compatibility
         # -------------------------------------------------
 
         if (
@@ -89,12 +90,9 @@ class RankingBreakdown:
             )
 
 
-        if weight < 0:
-
-            raise ValueError(
-                "ranking component weight must be >= 0"
-            )
-
+        # -------------------------------------------------
+        # Validate score
+        # -------------------------------------------------
 
         try:
 
@@ -102,12 +100,19 @@ class RankingBreakdown:
                 score
             )
 
-        except (TypeError, ValueError):
+        except (
+            TypeError,
+            ValueError
+        ):
 
             raise ValueError(
                 "ranking component score must be numeric"
             )
 
+
+        # -------------------------------------------------
+        # Validate weight
+        # -------------------------------------------------
 
         try:
 
@@ -115,7 +120,10 @@ class RankingBreakdown:
                 weight
             )
 
-        except (TypeError, ValueError):
+        except (
+            TypeError,
+            ValueError
+        ):
 
             raise ValueError(
                 "ranking component weight must be numeric"
@@ -128,6 +136,10 @@ class RankingBreakdown:
                 "ranking component weight must be >= 0"
             )
 
+
+        # -------------------------------------------------
+        # Store component
+        # -------------------------------------------------
 
         self.components[name] = {
 
@@ -173,25 +185,31 @@ class RankingBreakdown:
             )
 
 
-        component = self.components[name]
+        component = (
+            self.components[name]
+        )
 
 
-        return (
+        return round(
 
             component["score"]
             *
-            component["weight"]
+            component["weight"],
+
+            2
 
         )
 
 
     # -----------------------------------------------------
-    # Final weighted score
+    # Final normalized weighted score
     # -----------------------------------------------------
 
     def final_score(self):
 
-        total_weight = self.weight_sum()
+        total_weight = (
+            self.weight_sum()
+        )
 
 
         if total_weight <= 0:
@@ -233,22 +251,25 @@ class RankingBreakdown:
         result = {}
 
 
-        for name, component in self.components.items():
+        for (
+            name,
+            component
+        ) in self.components.items():
 
             result[name] = {
 
-                "score": component["score"],
+                "score": (
+                    component["score"]
+                ),
 
-                "weight": component["weight"],
+                "weight": (
+                    component["weight"]
+                ),
 
-                "contribution": round(
-
+                "contribution": (
                     self.contribution(
                         name
-                    ),
-
-                    2
-
+                    )
                 )
 
             }

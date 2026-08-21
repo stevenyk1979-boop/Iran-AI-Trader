@@ -1,18 +1,9 @@
-# test_market_regime_v2.py
-
-"""
-Iran AI Trader Professional
-
-Market Regime V2
-Core Engine Test
-"""
-
-from .market_regime_v2 import MarketRegimeV2
+from scanner_v2.market_regime_adapter import MarketRegimeAdapter
 
 
-def test_market_regime_v2():
+def test_market_regime_adapter():
 
-    engine = MarketRegimeV2()
+    adapter = MarketRegimeAdapter()
 
     data = {
         "price": 120,
@@ -41,11 +32,11 @@ def test_market_regime_v2():
         "equal_change": 0.9
     }
 
-    result = engine.calculate(data)
+    result = adapter.analyze(data)
 
     print()
     print("=" * 60)
-    print("MARKET REGIME V2 TEST")
+    print("MARKET REGIME ADAPTER TEST")
     print("=" * 60)
 
     print()
@@ -56,22 +47,5 @@ def test_market_regime_v2():
 
     assert "regime" in result
     assert "score" in result
-    assert "trend" in result
-    assert "breadth" in result
-    assert "liquidity" in result
-    assert "volatility" in result
-    assert "macro" in result
 
     assert 0 <= result["score"] <= 100
-
-    print()
-    print("REGIME:", result["regime"])
-    print("SCORE :", result["score"])
-
-    print()
-    print("ALL MARKET REGIME V2 TESTS: PASS")
-
-
-if __name__ == "__main__":
-    test_market_regime_v2()
-
