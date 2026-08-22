@@ -1,9 +1,10 @@
+
 """
 Iran AI Trader Professional
 
 Scanner V2
 
-Sprint45-04
+Sprint46-08
 
 Order Planning Engine
 
@@ -140,6 +141,20 @@ class OrderPlanningEngine:
             quantity * float(price)
         )
 
+        # -------------------------------------------------
+        # Final Risk Gate information
+        # -------------------------------------------------
+
+        gate_decision = item.get(
+            "gate_decision",
+            "NOT_EVALUATED"
+        )
+
+        gate_reason = item.get(
+            "gate_reason",
+            "NOT_EVALUATED"
+        )
+
         return {
 
             "symbol": symbol,
@@ -165,7 +180,13 @@ class OrderPlanningEngine:
 
             "status": "READY",
 
-            "broker_execution": False
+            "broker_execution": False,
+
+            "gate_decision":
+                gate_decision,
+
+            "gate_reason":
+                gate_reason
         }
 
 
@@ -181,6 +202,7 @@ class OrderPlanningEngine:
         self.orders = []
 
         if portfolio is None:
+
             return []
 
         if not isinstance(
@@ -202,7 +224,9 @@ class OrderPlanningEngine:
                     order
                 )
 
-        return self.orders
+        return list(
+            self.orders
+        )
 
 
     # -------------------------------------------------
@@ -223,11 +247,14 @@ class OrderPlanningEngine:
     def statistics(self):
 
         total_value = sum(
+
             order.get(
                 "order_value",
                 0
             )
+
             for order in self.orders
+
         )
 
         return {
@@ -236,17 +263,24 @@ class OrderPlanningEngine:
                 self.orders
             ),
 
-            "total_order_value": round(
-                total_value,
-                2
-            ),
+            "total_order_value":
+                round(
+                    total_value,
+                    2
+                ),
 
             "symbols": [
+
                 order.get(
                     "symbol"
                 )
+
                 for order in self.orders
+
             ],
 
-            "broker_execution": False
+            "broker_execution":
+                False
+
         }
+
