@@ -43,7 +43,6 @@ class PreTradeValidationEngine:
         self.valid_orders = []
         self.rejected_orders = []
 
-
     # -------------------------------------------------
     # Validate one order
     # -------------------------------------------------
@@ -94,7 +93,6 @@ class PreTradeValidationEngine:
             False
         )
 
-
         # -------------------------------------------------
         # Symbol
         # -------------------------------------------------
@@ -105,7 +103,6 @@ class PreTradeValidationEngine:
                 "MISSING_SYMBOL"
             )
 
-
         # -------------------------------------------------
         # Signal
         # -------------------------------------------------
@@ -115,7 +112,6 @@ class PreTradeValidationEngine:
             errors.append(
                 "INVALID_SIGNAL"
             )
-
 
         # -------------------------------------------------
         # Price
@@ -137,7 +133,6 @@ class PreTradeValidationEngine:
                 "INVALID_PRICE"
             )
 
-
         # -------------------------------------------------
         # Capital
         # -------------------------------------------------
@@ -158,7 +153,6 @@ class PreTradeValidationEngine:
                 "INVALID_CAPITAL"
             )
 
-
         # -------------------------------------------------
         # Quantity
         # -------------------------------------------------
@@ -178,7 +172,6 @@ class PreTradeValidationEngine:
             errors.append(
                 "INVALID_QUANTITY"
             )
-
 
         # -------------------------------------------------
         # Order value
@@ -201,7 +194,6 @@ class PreTradeValidationEngine:
             errors.append(
                 "INVALID_ORDER_VALUE"
             )
-
 
         # -------------------------------------------------
         # Mathematical consistency
@@ -228,7 +220,6 @@ class PreTradeValidationEngine:
                 "ORDER_VALUE_CALCULATION_ERROR"
             )
 
-
         # -------------------------------------------------
         # Capital consistency
         # -------------------------------------------------
@@ -247,7 +238,6 @@ class PreTradeValidationEngine:
                 "CAPITAL_VALIDATION_ERROR"
             )
 
-
         # -------------------------------------------------
         # Status
         # -------------------------------------------------
@@ -257,7 +247,6 @@ class PreTradeValidationEngine:
             errors.append(
                 "ORDER_NOT_READY"
             )
-
 
         # -------------------------------------------------
         # Broker safety
@@ -269,7 +258,6 @@ class PreTradeValidationEngine:
                 "BROKER_EXECUTION_ENABLED"
             )
 
-
         return {
 
             "valid": len(
@@ -280,7 +268,6 @@ class PreTradeValidationEngine:
 
             "symbol": symbol
         }
-
 
     # -------------------------------------------------
     # Validate order list
@@ -302,8 +289,10 @@ class PreTradeValidationEngine:
 
             return []
 
-
+        # -------------------------------------------------
         # Maximum order count
+        # -------------------------------------------------
+
         if (
             self.max_orders is not None
             and len(orders)
@@ -314,9 +303,11 @@ class PreTradeValidationEngine:
                 :self.max_orders
             ]
 
-
         total_value = 0.0
 
+        # -------------------------------------------------
+        # Validate each order
+        # -------------------------------------------------
 
         for order in orders:
 
@@ -346,7 +337,6 @@ class PreTradeValidationEngine:
 
                 continue
 
-
             try:
 
                 value = float(
@@ -357,10 +347,12 @@ class PreTradeValidationEngine:
 
             except Exception:
 
-                value = 0
+                value = 0.0
 
-
+            # -------------------------------------------------
             # Maximum total order value
+            # -------------------------------------------------
+
             if (
                 self.max_order_value
                 is not None
@@ -389,7 +381,6 @@ class PreTradeValidationEngine:
 
                 continue
 
-
             validated = dict(
                 order
             )
@@ -408,11 +399,9 @@ class PreTradeValidationEngine:
 
             total_value += value
 
-
         return list(
             self.valid_orders
         )
-
 
     # -------------------------------------------------
     # Get valid orders
@@ -424,7 +413,6 @@ class PreTradeValidationEngine:
             self.valid_orders
         )
 
-
     # -------------------------------------------------
     # Get rejected orders
     # -------------------------------------------------
@@ -434,7 +422,6 @@ class PreTradeValidationEngine:
         return list(
             self.rejected_orders
         )
-
 
     # -------------------------------------------------
     # Statistics

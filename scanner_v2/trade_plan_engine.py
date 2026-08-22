@@ -3,20 +3,36 @@ Iran AI Trader Professional
 
 Scanner V2
 
-Sprint45-03
+Sprint45-10
 
 Trade Plan Engine
 
 Builds a standardized trade plan from the
 outputs of the Scanner V2 decision pipeline.
+
+Portfolio Risk Integrated
 """
 
 
 class TradePlanEngine:
 
-    def __init__(self):
+    def __init__(
+        self,
+        portfolio_risk_engine=None,
+        total_capital=0
+    ):
 
         self.plans = []
+
+        self.portfolio_risk_engine = (
+            portfolio_risk_engine
+        )
+
+        self.total_capital = self._number(
+            total_capital
+        )
+
+        self.current_invested = 0.0
 
     # -------------------------------------------------
     # Safe numeric conversion
@@ -35,6 +51,102 @@ class TradePlanEngine:
         except Exception:
 
             return float(default)
+
+    # -------------------------------------------------
+    # Configure portfolio risk
+    # -------------------------------------------------
+
+    def configure_portfolio_risk(
+        self,
+        portfolio_risk_engine,
+        total_capital,
+        current_invested=0
+    ):
+
+        self.portfolio_risk_engine = (
+            portfolio_risk_engine
+        )
+
+        self.total_capital = self._number(
+            total_capital
+        )
+
+        self.current_invested = self._number(
+            current_invested
+        )
+
+    # -------------------------------------------------
+    # Portfolio risk check
+    # -------------------------------------------------
+
+    def _portfolio_risk_check(
+        self,
+        order_value,
+        result=None
+    ):
+
+        # Risk engine is optional.
+        # Existing behavior remains unchanged
+        # when no engine is supplied.
+
+        if self.portfolio_risk_engine is None:
+
+            return {
+                "allowed": True,
+                "status": "NOT CHECKED",
+                "reason": None
+            }
+
+        if order_value <= 0:
+
+            return {
+                "allowed": False,
+                "status": "REJECTED",
+                "reason": "INVALID ORDER VALUE"
+            }
+
+        if self.total_capital <= 0:
+
+            return {
+                "allowed": False,
+                "status": "REJECTED",
+                "reason": "INVALID TOTAL CAPITAL"
+            }
+
+        try:
+
+            allowed = (
+                self.portfolio_risk_engine.can_open(
+                    order_value,
+                    self.total_capital,
+                    self.current_invested
+                )
+            )
+
+            if allowed:
+
+                return {
+                    "allowed": True,
+                    "status": "CONTROLLED",
+                    "reason": None
+                }
+
+            return {
+                "allowed": False,
+                "status": "REJECTED",
+                "reason": "PORTFOLIO RISK LIMIT"
+            }
+
+        except Exception as error:
+
+            return {
+                "allowed": False,
+                "status": "REJECTED",
+                "reason": (
+                    "PORTFOLIO RISK ERROR: "
+                    + str(error)
+                )
+            }
 
     # -------------------------------------------------
     # Build one trade plan
@@ -196,16 +308,40 @@ class TradePlanEngine:
         )
 
         # -------------------------------------------------
+        # Portfolio Risk
+        # -------------------------------------------------
+
+        portfolio_risk = (
+            self._portfolio_risk_check(
+                order_value,
+                result
+            )
+        )
+
+        # -------------------------------------------------
         # Final status
         # -------------------------------------------------
 
         final_status = self._determine_status(
+
             signal=signal,
+
             decision=decision,
+
             risk_status=risk_status,
+
             validation=validation,
+
             quantity=quantity,
-            order_value=order_value
+
+            order_value=order_value,
+
+            portfolio_risk_allowed=(
+                portfolio_risk[
+                    "allowed"
+                ]
+            )
+
         )
 
         plan = {
@@ -213,6 +349,7 @@ class TradePlanEngine:
             "symbol": symbol,
 
             "market_regime": regime,
+
             "market_regime_score": round(
                 regime_score,
                 2
@@ -275,6 +412,18 @@ class TradePlanEngine:
 
             "validation_status": validation,
 
+            "portfolio_risk_status": (
+                portfolio_risk[
+                    "status"
+                ]
+            ),
+
+            "portfolio_risk_reason": (
+                portfolio_risk[
+                    "reason"
+                ]
+            ),
+
             "final_status": final_status
 
         }
@@ -292,7 +441,8 @@ class TradePlanEngine:
         risk_status,
         validation,
         quantity,
-        order_value
+        order_value,
+        portfolio_risk_allowed=True
     ):
 
         if validation not in (
@@ -307,6 +457,10 @@ class TradePlanEngine:
             "HIGH RISK",
             "EXTREME RISK"
         ):
+
+            return "REJECTED"
+
+        if not portfolio_risk_allowed:
 
             return "REJECTED"
 
@@ -340,7 +494,8 @@ class TradePlanEngine:
 
     def build(
         self,
-        results
+        results,
+        current_invested=None
     ):
 
         self.plans = []
@@ -351,6 +506,14 @@ class TradePlanEngine:
         ):
 
             return []
+
+        if current_invested is not None:
+
+            self.current_invested = (
+                self._number(
+                    current_invested
+                )
+            )
 
         for result in results:
 
@@ -397,6 +560,24 @@ class TradePlanEngine:
         ]
 
     # -------------------------------------------------
+    # Get rejected plans
+    # -------------------------------------------------
+
+    def get_rejected_plans(self):
+
+        return [
+
+            plan
+
+            for plan in self.plans
+
+            if plan.get(
+                "final_status"
+            ) == "REJECTED"
+
+        ]
+
+    # -------------------------------------------------
     # Statistics
     # -------------------------------------------------
 
@@ -404,6 +585,20 @@ class TradePlanEngine:
 
         ready = len(
             self.get_ready_plans()
+        )
+
+        rejected = len(
+            self.get_rejected_plans()
+        )
+
+        not_actionable = len(
+            [
+                plan
+                for plan in self.plans
+                if plan.get(
+                    "final_status"
+                ) == "NOT ACTIONABLE"
+            ]
         )
 
         return {
@@ -414,24 +609,10 @@ class TradePlanEngine:
 
             "ready": ready,
 
-            "rejected": len(
-                [
-                    plan
-                    for plan in self.plans
-                    if plan.get(
-                        "final_status"
-                    ) == "REJECTED"
-                ]
-            ),
+            "rejected": rejected,
 
-            "not_actionable": len(
-                [
-                    plan
-                    for plan in self.plans
-                    if plan.get(
-                        "final_status"
-                    ) == "NOT ACTIONABLE"
-                ]
+            "not_actionable": (
+                not_actionable
             )
 
         }
